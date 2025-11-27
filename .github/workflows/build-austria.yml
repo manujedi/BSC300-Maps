@@ -24,7 +24,7 @@ jobs:
           export datestring="$(printf '%(%y%m%d)T\n' -1)"
           export mapname=AT0000${datestring}3BR26204W02L
           echo "Creating map ${mapname}.map"
-          sh generate_map.sh -i austria.pbf -o ${mapname} 
+          sh generate_map_ci.sh -i austria.pbf -o ${mapname} 
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4

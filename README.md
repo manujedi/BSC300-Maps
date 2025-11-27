@@ -1,5 +1,8 @@
 # IGSPORT BSC300 Map Creator
 
+This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps. If you are logged in to github you should be able to download the artifacts.
+Ping me if a map update is wanted or a country shoud be added (or fork the repo and trigger a CI run).
+
 This repository provides tools to generate map files compatible with the IGSPORT BSC300 device using data from OpenStreetMap.
 
 It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments).
