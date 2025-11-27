@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Build-Slovenia
+        run: |
+          sudo apt update 
+          sudo apt install wget openjdk-21-jre 
+          wget https://download.geofabrik.de/europe/slovenia-latest.osm.pbf -O slovenia.pbf
+          export datestring="$(printf '%(%y%m%d)T\n' -1)"
+          export mapname=SI0000${datestring}3E528002701Q
+          echo "Creating map ${mapname}.map"
+          sh generate_map_ci.sh -i slovenia.pbf -o ${mapname} 
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: slovenia
+          path: ./*.map
