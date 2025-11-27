@@ -19,5 +19,5 @@ jobs:
         run: |
           sudo apt update 
           sudo apt install wget openjdk-21-jre 
-          wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.bpf
+          wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.pbf
           sh generate_map.sh -i austria.pbf -o AT00001111113BR26204W02L 
