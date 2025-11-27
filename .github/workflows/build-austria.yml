@@ -17,6 +17,7 @@ jobs:
 
       - name: Build-Austria
         run: |
-          sudo apt install wget jdk-openjdk
+          sudo apt update 
+          sudo apt install wget openjdk-21-jre 
           wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.bpf
           sh generate_map.sh -i austria.pbf -o AT00001111113BR26204W02L 
