@@ -1,0 +1,32 @@
+name: Austria
+
+on:
+  push:
+    paths:
+      - .github/**
+      - README.md
+
+jobs:
+  build-austria:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Build
+        run: |
+          sudo apt update 
+          sudo apt install wget openjdk-21-jre 
+          wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.pbf
+          export datestring="$(printf '%(%y%m%d)T\n' -1)"
+          export mapname=AT0000${datestring}3BR26204W02L
+          echo "Creating map ${mapname}.map"
+          sh generate_map_ci.sh -i austria.pbf -o ${mapname} 
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: austria
+          path: ./*.map
+

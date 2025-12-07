@@ -1,0 +1,42 @@
+name: Germany
+
+on:
+  push:
+    paths:
+      - .github/**
+      - README.md
+
+jobs:
+  build-baden-wuerttemberg:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: baden-wuerttemberg, geofabrik-url: https://download.geofabrik.de/europe/germany/baden-wuerttemberg-latest.osm.pbf, prefix: "DE0100", postfix: 3AI25D01X026},
+            { name: Bavaria, geofabrik-url: https://download.geofabrik.de/europe/germany/bayern-latest.osm.pbf, prefix: "DE0200", postfix: 3BG24M033036},
+            { name: Brandenburg, geofabrik-url: https://download.geofabrik.de/europe/germany/brandenburg-latest.osm.pbf, prefix: "DE0400", postfix: 3CV21I02902B},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Build
+        run: |
+          sudo apt update 
+          sudo apt install wget openjdk-21-jre 
+          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          export datestring="$(printf '%(%y%m%d)T\n' -1)"
+          export mapname=${{ matrix.maps.prefix }}${datestring}${{ matrix.maps.postfix }}
+          echo "Creating map ${mapname}.map"
+          sh generate_map_ci.sh -i out.pbf -o ${mapname}
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.maps.name }
+          path: ./*.map
+
+
