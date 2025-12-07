@@ -7,6 +7,16 @@ on:
       - README.md
 
 jobs:
+
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Cleanup
+        run: |
+          gh cache delete osmsis-cache
+
   build-osmsis-cache:
     runs-on: ubuntu-latest
 
