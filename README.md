@@ -1,3 +1,5 @@
+# Map Update: 06-12-2025
+
 # IGSPORT BSC300 Map Creator
 
 This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps. If you are logged in to github you should be able to download the artifacts.
