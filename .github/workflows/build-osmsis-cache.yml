@@ -18,6 +18,7 @@ jobs:
           gh cache delete osmsis-cache
     env:
         GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
 
   build-osmsis-cache:
     runs-on: ubuntu-latest
