@@ -1,3 +1,5 @@
 *~
 osmosis
 *.pbf
+.venv
+allmaps/*
