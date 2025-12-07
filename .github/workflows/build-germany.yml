@@ -15,8 +15,21 @@ jobs:
         maps:
           [
             { name: baden-wuerttemberg, geofabrik-url: https://download.geofabrik.de/europe/germany/baden-wuerttemberg-latest.osm.pbf, prefix: "DE0100", postfix: 3AI25D01X026},
-            { name: Bavaria, geofabrik-url: https://download.geofabrik.de/europe/germany/bayern-latest.osm.pbf, prefix: "DE0200", postfix: 3BG24M033036},
-            { name: Brandenburg, geofabrik-url: https://download.geofabrik.de/europe/germany/brandenburg-latest.osm.pbf, prefix: "DE0400", postfix: 3CV21I02902B},
+            { name: bayern, geofabrik-url: https://download.geofabrik.de/europe/germany/bayern-latest.osm.pbf, prefix: "DE0200", postfix: 3BG24M033036},
+            { name: brandenburg, geofabrik-url: https://download.geofabrik.de/europe/germany/brandenburg-latest.osm.pbf, prefix: "DE0400", postfix: 3CV21I02902B},
+            { name: bremen, geofabrik-url: https://download.geofabrik.de/europe/germany/bremen-latest.osm.pbf, prefix: "DE0500", postfix: 3B421H00C00N},
+            { name: berlin, geofabrik-url: https://download.geofabrik.de/europe/germany/berlin-latest.osm.pbf, prefix: "DE0300", postfix: 3E122G00G00D},
+            { name: hamburg, geofabrik-url: https://download.geofabrik.de/europe/germany/hamburg-latest.osm.pbf, prefix: "DE0600", postfix: 3BU21C00H00D},
+            { name: hessen, geofabrik-url: https://download.geofabrik.de/europe/germany/hessen-latest.osm.pbf, prefix: "DE0700", postfix: 3AO23I01L029},
+            { name: niedersachsen, geofabrik-url: https://download.geofabrik.de/europe/germany/niedersachsen-latest.osm.pbf, prefix: "DE0900", postfix: 39R20Z03D02W},
+            { name: mecklenburg-vorpommern, geofabrik-url: https://download.geofabrik.de/europe/germany/mecklenburg-vorpommern-latest.osm.pbf, prefix: "DE0800", postfix: 3CG1ZZ02G021},
+            { name: nordrhein-westfalen, geofabrik-url: https://download.geofabrik.de/europe/germany/nordrhein-westfalen-latest.osm.pbf, prefix: "DE1000", postfix: 39H22L02A029},
+            { name: rheinland-pfalz, geofabrik-url: https://download.geofabrik.de/europe/germany/rheinland-pfalz-latest.osm.pbf, prefix: "DE1100", postfix: 39N24801I01Y},
+            { name: saarland, geofabrik-url: https://download.geofabrik.de/europe/germany/saarland-latest.osm.pbf, prefix: "DE1200", postfix: 39S25I00O00J},
+            { name: sachsen, geofabrik-url: https://download.geofabrik.de/europe/germany/sachsen-latest.osm.pbf, prefix: "DE1300", postfix: 3DA23H02001Js},
+            { name: sachsen-anhalt, geofabrik-url: https://download.geofabrik.de/europe/germany/sachsen-anhalt-latest.osm.pbf, prefix: "DE1400", postfix: 3CG22201O027},
+            { name: schleswig-holstein, geofabrik-url: https://download.geofabrik.de/europe/germany/schleswig-holstein-latest.osm.pbf, prefix: "DE1500", postfix: 3AH1ZT02U01Y},
+            { name: thueringen, geofabrik-url: https://download.geofabrik.de/europe/germany/thueringen-latest.osm.pbf, prefix: "230310", postfix: 3C023I01S01H},
           ]
 
     steps:
@@ -38,5 +51,4 @@ jobs:
         with:
           name: ${{ matrix.maps.name }}
           path: ./*.map
-
 
