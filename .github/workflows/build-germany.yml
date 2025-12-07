@@ -7,7 +7,7 @@ on:
       - README.md
 
 jobs:
-  build-baden-wuerttemberg:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
