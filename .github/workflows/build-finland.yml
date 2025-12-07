@@ -9,6 +9,7 @@ on:
 jobs:
   build-finland:
     runs-on: ubuntu-latest
+    needs: build-osmsis-cache
 
     steps:
       - name: checkout

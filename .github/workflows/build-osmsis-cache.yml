@@ -7,7 +7,7 @@ on:
       - README.md
 
 jobs:
-  build:
+  build-osmsis-cache:
     runs-on: ubuntu-latest
 
     steps:
