@@ -1,15 +1,14 @@
 name: Germany
 
 on:
-  push:
-    paths:
-      - .github/**
-      - README.md
+  workflow_run:
+    workflows: [omsis]
+    types:
+      - completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: build-osmsis-cache
 
     strategy:
       matrix:
