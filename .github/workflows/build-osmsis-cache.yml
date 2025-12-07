@@ -1,0 +1,28 @@
+name: omsis
+
+on:
+  push:
+    paths:
+      - .github/**
+      - README.md
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Build
+        run: |
+          sudo apt update 
+          sudo apt install wget openjdk-21-jre
+          sh setup_env_ci.sh
+
+      - uses: actions/cache/save@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+

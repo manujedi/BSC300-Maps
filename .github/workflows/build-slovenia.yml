@@ -15,10 +15,24 @@ jobs:
       - name: checkout
         uses: actions/checkout@v5
 
-      - name: Build-Slovenia
+      - name: Setup Env
         run: |
           sudo apt update 
           sudo apt install wget openjdk-21-jre 
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env_ci.sh
+
+      - name: Build-Slovenia
+        run: |
           wget https://download.geofabrik.de/europe/slovenia-latest.osm.pbf -O slovenia.pbf
           export datestring="$(printf '%(%y%m%d)T\n' -1)"
           export mapname=SI0000${datestring}3E528002701Q

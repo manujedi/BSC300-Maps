@@ -36,10 +36,24 @@ jobs:
       - name: checkout
         uses: actions/checkout@v5
 
-      - name: Build
+      - name: Setup Env
         run: |
           sudo apt update 
           sudo apt install wget openjdk-21-jre 
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env_ci.sh
+
+      - name: Build
+        run: |
           wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
           export datestring="$(printf '%(%y%m%d)T\n' -1)"
           export mapname=${{ matrix.maps.prefix }}${datestring}${{ matrix.maps.postfix }}
