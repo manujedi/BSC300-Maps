@@ -5,6 +5,8 @@ on:
     workflows: [omsis]
     types:
       - completed
+  schedule:
+    - cron: "0 12 * * *"
 
 jobs:
   build-austria:
