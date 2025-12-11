@@ -29,7 +29,6 @@ jobs:
 
   build-osmsis-cache:
     runs-on: ubuntu-latest
-    needs: cleanup
 
     steps:
       - name: checkout
