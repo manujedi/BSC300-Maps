@@ -7,17 +7,25 @@ on:
 
 jobs:
 
-  cleanup:
+  update-readme:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
     steps:
-      - name: Cleanup
+      - name: checkout
+        uses: actions/checkout@v5 
+
+      - name: edit Readme
         run: |
-          gh cache delete osmsis-cache
-    env:
-        GH_TOKEN: ${{ github.token }}
-        GH_REPO: ${{ github.repository }}
+          sed -i "1s/.*/# Last Map Update: $(date)/"  README.md
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git commit -m "Update map creation date"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-osmsis-cache:
     runs-on: ubuntu-latest
