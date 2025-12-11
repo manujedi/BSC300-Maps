@@ -23,7 +23,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add README.md
           git commit -m "Update map creation date"
-          git push origin main
+          git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
