@@ -1,4 +1,4 @@
-# Map Update: 06-12-2025
+# Last Map Update: Thu Dec 11 14:39:27 UTC 2025
 
 # IGSPORT BSC300 Map Creator
 
