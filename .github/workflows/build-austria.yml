@@ -2,7 +2,7 @@ name: Austria
 
 on:
   workflow_run:
-    workflows: [omsis]
+    workflows: [pre-requirements]
     types:
       - completed
 

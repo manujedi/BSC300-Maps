@@ -2,7 +2,7 @@ name: Germany
 
 on:
   workflow_run:
-    workflows: [omsis]
+    workflows: [pre-requirements]
     types:
       - completed
 
