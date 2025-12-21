@@ -1,4 +1,4 @@
-name: pre-requirements
+name: start map builds
 
 on: 
   workflow_dispatch:
