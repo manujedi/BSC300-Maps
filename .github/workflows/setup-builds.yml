@@ -39,9 +39,21 @@ jobs:
         run: |
           sudo apt update 
           sudo apt install wget openjdk-21-jre
-          sh setup_env_ci.sh
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env_ci.sh
+
 
       - uses: actions/cache/save@v4
+        if: steps.cache.outputs.cache-hit != 'true'
         id: cache
         with:
           path: osmosis
