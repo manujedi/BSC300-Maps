@@ -13,13 +13,13 @@ It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/
 
 Run the tool with the following syntax:
 
-```bash
-./generate_map.sh -i input_map_file.pbf -o output_map_filename
+```python
+python generate_map.py -i input_map_file.pbf -c DE -s 1200
 ```
 
 * Input map files can be downloaded from [Geofabrik](https://download.geofabrik.de/).
 * The output will be a `.map` file, automatically generated with the correct extension.
-* The output filename must follow a specific format to be recognized by BSC300 firmware.
+* The output filename must follow a specific format to be recognized by BSC300 firmware, it will be calculated in the script.
 
 ### Output Filename Format
 
@@ -184,6 +184,8 @@ This is sorted by westernmost point, which also matches:
 |Vienna                 |AT| 0900| 230310| 3G0 -> 4464| 26S -> 2836| 009 -> 09| 007 -> 07|  
 
 no idea what the scaling is, does not correspond to any coordinate system that i know
+
+Solved now, convert Latitutde to MercatorY. See parser.ipynb
 
 # some graphs about the data:
 

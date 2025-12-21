@@ -1,6 +1,7 @@
 name: Austria
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [pre-requirements]
     types:
@@ -17,7 +18,8 @@ jobs:
       - name: Setup Env
         run: |
           sudo apt update 
-          sudo apt install wget openjdk-21-jre 
+          sudo apt install wget openjdk-21-jre python pip
+          pip install numpy
 
       - name: omsis-cache
         uses: actions/cache/restore@v4
@@ -33,10 +35,7 @@ jobs:
       - name: Build
         run: |
           wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.pbf
-          export datestring="$(printf '%(%y%m%d)T\n' -1)"
-          export mapname=AT0000${datestring}3BR26204W02L
-          echo "Creating map ${mapname}.map"
-          sh generate_map_ci.sh -i austria.pbf -o ${mapname} 
+          python generate_map.py -i austria.pbf -c AT -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
