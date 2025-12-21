@@ -18,7 +18,7 @@ jobs:
       - name: Setup Env
         run: |
           sudo apt-get update 
-          sudo apt-get install wget openjdk-21-jre python pip
+          sudo apt-get install wget openjdk-21-jre python3 pip
           pip install numpy
 
       - name: omsis-cache
