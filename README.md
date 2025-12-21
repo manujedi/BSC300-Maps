@@ -13,7 +13,7 @@ It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/
 
 Run the tool with the following syntax:
 
-```python
+```shell
 python generate_map.py -i input_map_file.pbf -c DE -s 1200
 ```
 
