@@ -1,6 +1,7 @@
-name: Germany
+name: germany
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [start map builds]
     types:
@@ -29,7 +30,7 @@ jobs:
             { name: sachsen, geofabrik-url: https://download.geofabrik.de/europe/germany/sachsen-latest.osm.pbf, state: "1300"},
             { name: sachsen-anhalt, geofabrik-url: https://download.geofabrik.de/europe/germany/sachsen-anhalt-latest.osm.pbf, state: "1400"},
             { name: schleswig-holstein, geofabrik-url: https://download.geofabrik.de/europe/germany/schleswig-holstein-latest.osm.pbf, state: "1500"},
-            { name: thueringen, geofabrik-url: https://download.geofabrik.de/europe/germany/thueringen-latest.osm.pbf, state: "230310"},
+            { name: thueringen, geofabrik-url: https://download.geofabrik.de/europe/germany/thueringen-latest.osm.pbf, state: "1600"},
           ]
 
     steps:
@@ -51,7 +52,7 @@ jobs:
 
       - name: omsis
         if: steps.cache.outputs.cache-hit != 'true'
-        run: sh setup_env_ci.sh
+        run: sh setup_env.sh
 
       - name: Build
         run: |

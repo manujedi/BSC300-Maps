@@ -3,8 +3,6 @@
 # If osmosis environment needs to be created, the below versions of the tools will be used
 OSMOSIS_VERSION="0.49.2"
 MAPSFORGE_VERSION="0.25.0"
-# Used shared memory to improve performance (requires free RAM space)
-TEMP_JAVA_DIR_PATH="/dev/shm/"
 
 BIN_DIR=osmosis
 
