@@ -28,8 +28,7 @@ The filename should include:
 * **Country code**
 * **4-digit region code** (see explanation below)
 * **Date** in the format `YYMMDD`
-* **Additional characters**, which are device-specific and must match expected patterns (currently unknown but required). Use the examples below as templates.
-
+* **Coordinates** in base36
 **Example:** `-o PL00002507043EJ20506N068` (for Poland)
 
 ### Region Code Explanation

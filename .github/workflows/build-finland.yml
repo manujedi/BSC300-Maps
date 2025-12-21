@@ -16,8 +16,9 @@ jobs:
 
       - name: Setup Env
         run: |
-          sudo apt update 
-          sudo apt install wget openjdk-21-jre 
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
 
       - name: omsis-cache
         uses: actions/cache/restore@v4
@@ -33,10 +34,7 @@ jobs:
       - name: Build
         run: |
           wget https://download.geofabrik.de/europe/finland-latest.osm.pbf -O finland.pbf
-          export datestring="$(printf '%(%y%m%d)T\n' -1)"
-          export mapname=FI0000${datestring}3GN1E00940GP
-          echo "Creating map ${mapname}.map"
-          sh generate_map_ci_low_ram.sh -i finland.pbf -o ${mapname} 
+          python generate_map.py -i finland.pbf -c FI -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
