@@ -35,13 +35,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v5
 
-      - name: Build
-        run: |
-          sudo apt update 
-          sudo apt install wget openjdk-21-jre
-
       - name: omsis-cache
         uses: actions/cache/restore@v4
+        id: cache
         with:
           path: osmosis
           key: osmsis-cache
