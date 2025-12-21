@@ -1,4 +1,4 @@
-name: slovenia
+name: portugal
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  build-slovenia:
+  build-portugal:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,11 +34,12 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/slovenia-latest.osm.pbf -O slovenia.pbf
-          python generate_map.py -i slovenia.pbf -c SI -s 0000
+          wget https://download.geofabrik.de/europe/portugal-latest.osm.pbf -O portugal.pbf
+          python generate_map.py -i portugal.pbf -c PT -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: slovenia
+          name: portugal
           path: ./*.map
+

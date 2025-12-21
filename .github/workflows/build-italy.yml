@@ -46,7 +46,7 @@ jobs:
       - name: Build
         run: |
           wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
-          python generate_map.py -i out.pbf -c DE -s ${{ matrix.maps.state }}
+          python generate_map.py -i out.pbf -c IT -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4

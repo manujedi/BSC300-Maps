@@ -1,4 +1,4 @@
-name: Hungary
+name: hungary
 
 on:
   workflow_dispatch:

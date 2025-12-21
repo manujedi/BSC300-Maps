@@ -1,0 +1,67 @@
+name: poland
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [start map builds]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: dolnoslaskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/dolnoslaskie-latest.osm.pbf , state: "0100"},
+            { name: kujawsko-pomorskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/kujawsko-pomorskie-latest.osm.pbf , state: "0200"},
+            { name: lodzkie , geofabrik-url:  https://download.geofabrik.de/europe/poland/lodzkie-latest.osm.pbf , state: "0300"},
+            { name: lubelskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/lubelskie-latest.osm.pbf , state: "0400"},
+            { name: lubuskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/lubuskie-latest.osm.pbf , state: "0500"},
+            { name: malopolskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/malopolskie-latest.osm.pbf , state: "0600"},
+            { name: mazowieckie , geofabrik-url:  https://download.geofabrik.de/europe/poland/mazowieckie-latest.osm.pbf , state: "0700"},
+            { name: opolskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/opolskie-latest.osm.pbf , state: "0800"},
+            { name: podkarpackie , geofabrik-url:  https://download.geofabrik.de/europe/poland/podkarpackie-latest.osm.pbf , state: "0900"},
+            { name: podlaskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/podlaskie-latest.osm.pbf , state: "1000"},
+            { name: pomorskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/pomorskie-latest.osm.pbf , state: "1100"},
+            { name: slaskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/slaskie-latest.osm.pbf , state: "1200"},
+            { name: swietokrzyskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/swietokrzyskie-latest.osm.pbf , state: "1300"},
+            { name: warminsko-mazurskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/warminsko-mazurskie-latest.osm.pbf , state: "1400"},
+            { name: wielkopolskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/wielkopolskie-latest.osm.pbf , state: "1500"},
+            { name: zachodniopomorskie , geofabrik-url:  https://download.geofabrik.de/europe/poland/zachodniopomorskie-latest.osm.pbf , state: "1600"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Build
+        run: |
+          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          python generate_map.py -i out.pbf -c PL -s ${{ matrix.maps.state }}
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.maps.name }}
+          path: ./*.map
+
