@@ -3,7 +3,7 @@ name: Austria
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [pre-requirements]
+    workflows: [start map builds]
     types:
       - completed
 

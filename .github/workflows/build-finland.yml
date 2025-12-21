@@ -2,7 +2,7 @@ name: Finland
 
 on:
   workflow_run:
-    workflows: [pre-requirements]
+    workflows: [start map builds]
     types:
       - completed
 
