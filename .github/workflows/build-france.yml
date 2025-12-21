@@ -42,6 +42,7 @@ jobs:
             { name: provence-alpes-cote-d-azur , geofabrik-url:  https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-latest.osm.pbf , state: "2500"},
             { name: reunion , geofabrik-url:  https://download.geofabrik.de/europe/france/reunion-latest.osm.pbf , state: "2600"},
             { name: rhone-alpes , geofabrik-url:  https://download.geofabrik.de/europe/france/rhone-alpes-latest.osm.pbf , state: "2700"},
+          ]
 
     steps:
       - name: checkout
