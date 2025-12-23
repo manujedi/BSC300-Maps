@@ -1,0 +1,56 @@
+name: united-kingdom
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [start map builds]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: bermuda , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/bermuda-latest.osm.pbf , state: "0100"},
+            { name: england , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/england-latest.osm.pbf , state: "0200"},
+            { name: falklands , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/falklands-latest.osm.pbf , state: "0300"},
+            { name: scotland , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/scotland-latest.osm.pbf , state: "0400"},
+            { name: wales , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/wales-latest.osm.pbf , state: "0500"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Build
+        run: |
+          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          python generate_map.py -i out.pbf -c UK -s ${{ matrix.maps.state }}
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.maps.name }}
+          path: ./*.map
+
