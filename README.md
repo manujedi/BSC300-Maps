@@ -1,5 +1,7 @@
 # Last Map Update: Mon Dec 22 10:46:31 UTC 2025
 
+# [Map Downloads here](https://github.com/manujedi/bsc300_maps/actions) _(you need to be logged in to github)_
+
 # IGSPORT BSC300 Map Creator
 
 This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps. If you are logged in to github you should be able to download the artifacts.
