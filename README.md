@@ -2,12 +2,10 @@
 
 # [Map Downloads here](https://github.com/manujedi/bsc300_maps/actions) _(you need to be logged in to github)_
 
-# IGSPORT BSC300 Map Creator
+# IGPSPORT BSC300 / BSC300T Map Creator
 
-This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps. If you are logged in to github you should be able to download the artifacts.
+This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps and ported to python for simpler math. If you are logged in to github you should be able to download the artifacts.
 Ping me if a map update is wanted or a country shoud be added (or fork the repo and trigger a CI run).
-
-This repository provides tools to generate map files compatible with the IGSPORT BSC300 device using data from OpenStreetMap.
 
 It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments).
 
@@ -149,7 +147,7 @@ The **4-digit map version number** in the filename actually represents a region 
 |Vietnam 🇻🇳 | VN00002503174Y22QK0800A7.map|
 
 
-# additional suspicions by me about the filename
+# additional filename values
 
 Looking at Austria https://en.wikipedia.org/wiki/States_of_Austria
 
@@ -184,9 +182,7 @@ This is sorted by westernmost point, which also matches:
 |Burgenland             |AT| 0100| 230310| 3FV -> 4459| 26Y -> 2842| 00R -> 27| 019 -> 45|  
 |Vienna                 |AT| 0900| 230310| 3G0 -> 4464| 26S -> 2836| 009 -> 09| 007 -> 07|  
 
-no idea what the scaling is, does not correspond to any coordinate system that i know
-
-Solved now, convert Latitutde to MercatorY. See parser.ipynb
+To get the exact values, latitutde needs to be converted to [web mercartor projection](https://en.wikipedia.org/wiki/Web_Mercator_projection). See parser.ipynb for the exact calculation steps
 
 # some graphs about the data:
 
