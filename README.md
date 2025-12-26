@@ -9,6 +9,9 @@ Ping me if a map update is wanted or a country shoud be added (or fork the repo 
 
 It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments).
 
+The idea is that we have up to date maps and not rely on the igpsport maps from 2023 and regions that are not officially available.
+If someone is interested, [this are the maps](https://manujedi.github.io/bsc300_maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
+
 ## Usage
 
 Run the tool with the following syntax:
