@@ -2,7 +2,7 @@ name: belgium
 
 env:
   url: https://download.geofabrik.de/europe/belgium-latest.osm.pbf
-  country-code: BE
+  countrycode: BE
 
 on:
   workflow_dispatch:
@@ -39,9 +39,7 @@ jobs:
       - name: Build
         run: |
           wget "$url" -O tmp.pbf
-          echo "generating map for $country-code state 0000"
-          echo "python generate_map.py -i tmp.pbf -c $country-code -s 0000"
-          python generate_map.py -i tmp.pbf -c "$country-code" -s 0000
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
