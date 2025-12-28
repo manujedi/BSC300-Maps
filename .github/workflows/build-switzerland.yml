@@ -1,5 +1,9 @@
 name: switzerland
 
+env:
+  url: https://download.geofabrik.de/europe/switzerland-latest.osm.pbf
+  countrycode: CH
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-switzerland:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/switzerland-latest.osm.pbf -O switzerland.pbf
-          python generate_map.py -i switzerland.pbf -c CH -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: switzerland
+          name: ${{ github.workflow }}
           path: ./*.map
-

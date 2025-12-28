@@ -1,5 +1,9 @@
 name: finland
 
+env:
+  url: https://download.geofabrik.de/europe/finland-latest.osm.pbf
+  countrycode: FI
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-finland:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,11 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/finland-latest.osm.pbf -O finland.pbf
-          python generate_map.py -i finland.pbf -c FI -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: finland
+          name: ${{ github.workflow }}
           path: ./*.map

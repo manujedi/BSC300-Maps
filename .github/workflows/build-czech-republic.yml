@@ -1,5 +1,9 @@
 name: czech-republic
 
+env:
+  url: https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
+  countrycode: CZ
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-czech-republic:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf -O czech-republic.pbf
-          python generate_map.py -i czech-republic.pbf -c CZ -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: czech-republic
+          name: ${{ github.workflow }}
           path: ./*.map
-

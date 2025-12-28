@@ -1,5 +1,9 @@
 name: austria
 
+env:
+  url: https://download.geofabrik.de/europe/austria-latest.osm.pbf
+  countrycode: AT
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-austria:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +38,12 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/austria-latest.osm.pbf -O austria.pbf
-          python generate_map.py -i austria.pbf -c AT -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: austria
+          name: ${{ github.workflow }}
           path: ./*.map
 

@@ -1,5 +1,9 @@
 name: slovakia
 
+env:
+  url: https://download.geofabrik.de/europe/slovakia-latest.osm.pbf
+  countrycode: SL
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-slovakia:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/slovakia-latest.osm.pbf -O slovakia.pbf
-          python generate_map.py -i slovakia.pbf -c SL -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: slovakia
+          name: ${{ github.workflow }}
           path: ./*.map
-

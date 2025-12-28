@@ -1,5 +1,8 @@
 name: united-kingdom
 
+env:
+  countrycode: UK
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -46,11 +49,11 @@ jobs:
       - name: Build
         run: |
           wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
-          python generate_map.py -i out.pbf -c UK -s ${{ matrix.maps.state }}
+          python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: united-kingdom-${{ matrix.maps.name }}
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}
           path: ./*.map
 

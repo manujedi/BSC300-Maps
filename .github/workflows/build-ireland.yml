@@ -1,5 +1,9 @@
 name: ireland
 
+env:
+  url: https://download.geofabrik.de/europe/ireland-and-northern-ireland-latest.osm.pbf
+  countrycode: IE
+
 on:
   workflow_dispatch:
   workflow_run:
@@ -8,7 +12,7 @@ on:
       - completed
 
 jobs:
-  build-ireland:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          wget https://download.geofabrik.de/europe/ireland-and-northern-ireland-latest.osm.pbf -O ireland.pbf
-          python generate_map.py -i ireland.pbf -c IE -s 0000
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: ireland
+          name: ${{ github.workflow }}
           path: ./*.map
-
