@@ -58,3 +58,4 @@ jobs:
     - run: gh run list --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id"; done
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ env.GITHUB_REPOSITORY }}
