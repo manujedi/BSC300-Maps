@@ -61,8 +61,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.url }} -O out.pbf
-          python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
+          /usr/bin/time -v python generate_map.py -i ${{ matrix.maps.url }} -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4

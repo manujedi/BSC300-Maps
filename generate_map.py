@@ -35,8 +35,10 @@ try:
     if all([result.scheme, result.netloc]):
         # should be a URL
         input_map_file = args.i
+    else:
+        raise "Not a URL"
 except:
-    # it is a file, not an URL
+    # probably a file if not an URL
     input_map_file = os.path.realpath(args.i)
 tag_file = os.path.realpath(tag_file)
 tmp_map_file = os.path.realpath("tmp.map")
