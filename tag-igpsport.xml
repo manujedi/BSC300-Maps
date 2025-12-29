@@ -3,49 +3,54 @@
              profile-name="default-profile" xmlns="http://mapsforge.org/tag-mapping"
              xsi:schemaLocation="http://mapsforge.org/tag-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/master/resources/tag-mapping.xsd">
   <ways>
-    <osm-tag key="highway" value="motorway" zoom-appear="13"/>
-    <osm-tag key="highway" value="motorway_link" zoom-appear="13"/>
-    <osm-tag key="highway" value="primary" zoom-appear="13"/>
+    <!-- in igpsport tags -->
     <osm-tag key="highway" value="primary_link" zoom-appear="13"/>
-    <osm-tag key="highway" value="secondary" zoom-appear="13"/>
+    <osm-tag key="highway" value="primary" zoom-appear="13"/>
     <osm-tag key="highway" value="secondary_link" zoom-appear="13"/>
+    <osm-tag key="highway" value="secondary" zoom-appear="13"/>
     <osm-tag key="highway" value="tertiary" zoom-appear="13"/>
-    <osm-tag key="highway" value="tertiary_link" zoom-appear="13"/>
-    <osm-tag key="highway" value="trunk" zoom-appear="13"/>
     <osm-tag key="highway" value="trunk_link" zoom-appear="13"/>
+    <osm-tag key="highway" value="trunk" zoom-appear="13"/>
 
-    <osm-tag key="highway" value="bridleway" zoom-appear="14"/>
-    <osm-tag key="highway" value="bus_guideway" zoom-appear="14"/>
-    <osm-tag key="highway" value="construction" zoom-appear="14"/>
     <osm-tag key="highway" value="cycleway" zoom-appear="14"/>
     <osm-tag key="highway" value="footway" zoom-appear="14"/>
     <osm-tag key="highway" value="living_street" zoom-appear="14"/>
     <osm-tag key="highway" value="path" zoom-appear="14"/>
     <osm-tag key="highway" value="pedestrian" zoom-appear="14"/>
-    <osm-tag key="highway" value="raceway" zoom-appear="14"/>
     <osm-tag key="highway" value="residential" zoom-appear="14"/>
     <osm-tag key="highway" value="road" zoom-appear="14"/>
     <osm-tag key="highway" value="service" zoom-appear="14"/>
-    <osm-tag key="highway" value="services" zoom-appear="14"/>
-    <osm-tag key="highway" value="steps" zoom-appear="14"/>
     <osm-tag key="highway" value="track" zoom-appear="14"/>
     <osm-tag key="highway" value="unclassified" zoom-appear="14"/>
+
+    <!-- additional tags, not for bicycle but for orientation nice-->
+    <osm-tag key="highway" value="motorway_link" zoom-appear="13"/>
+    <osm-tag key="highway" value="motorway" zoom-appear="13"/>
+    <osm-tag key="highway" value="tertiary_link" zoom-appear="13"/>
+
+    <osm-tag key="highway" value="bridleway" zoom-appear="14"/>
+    <osm-tag key="highway" value="bus_guideway" zoom-appear="14"/>
+    <osm-tag key="highway" value="construction" zoom-appear="14"/>
+    <osm-tag key="highway" value="raceway" zoom-appear="14"/>
+    
   </ways>
 
   <ways>
+    <!-- not in igpsport tags-->
+    <osm-tag key="waterway" value="canal" zoom-appear="14"/>
     <osm-tag key="waterway" value="river" zoom-appear="13"/>
     <osm-tag key="waterway" value="riverbank" zoom-appear="13"/>
-    <osm-tag key="waterway" value="canal" zoom-appear="14"/>
     <osm-tag key="waterway" value="stream" zoom-appear="14"/>
   </ways>
 
   <ways>
+    <!-- not in igpsport tags-->
     <osm-tag key="landuse" value="forest" zoom-appear="14"/>
   </ways>
 
   <ways>
+    <osm-tag key="natural" value="coastline" zoom-appear="13"/>
     <osm-tag key="natural" value="water" zoom-appear="13"/>
-    <osm-tag key="place" value="islet" zoom-appear="13"/>
   </ways>
 
 </tag-mapping>
