@@ -58,4 +58,4 @@ jobs:
       - name: cleanup
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh run list --repo ${{ env.GITHUB_REPOSITORY }} --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id" --repo ${{ env.GITHUB_REPOSITORY }}; done
+        run: gh run list --repo ${{ github.repository }} --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id" --repo ${{ github.repository }}; done
