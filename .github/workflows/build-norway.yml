@@ -25,6 +25,12 @@ jobs:
           sudo apt-get install wget openjdk-21-jre python3 pip
           pip install numpy
 
+      - name: Free Disk Space 
+        run: |
+          df -h /
+          sudo rm -rf /usr/local/lib/android || true
+          df -h /
+
       - name: omsis-cache
         uses: actions/cache/restore@v4
         id: cache
