@@ -1,0 +1,49 @@
+name: sweden
+
+env:
+  url: https://download.geofabrik.de/europe/sweden-latest.osm.pbf
+  countrycode: SE
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [start map builds]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmsis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Build
+        run: |
+          wget "$url" -O tmp.pbf
+          python generate_map.py -i tmp.pbf -c $countrycode -s 0000
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.workflow }}
+          path: ./*.map
+
