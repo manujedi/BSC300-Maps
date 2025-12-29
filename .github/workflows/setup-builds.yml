@@ -53,7 +53,8 @@ jobs:
           key: osmsis-cache
 
   cleanup-old-workflows:
-      steps:
-      - run: gh run list --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id"; done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+    - run: gh run list --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id"; done
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
