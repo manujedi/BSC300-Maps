@@ -51,6 +51,7 @@
   <ways>
     <osm-tag key="natural" value="coastline" zoom-appear="13"/>
     <osm-tag key="natural" value="water" zoom-appear="13"/>
+    <osm-tag key="place" value="islet" zoom-appear="13"/>
   </ways>
 
 </tag-mapping>
