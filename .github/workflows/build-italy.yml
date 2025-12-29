@@ -18,11 +18,11 @@ jobs:
       matrix:
         maps:
           [
-            { name: centro, geofabrik-url: https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf, state: "0100"},
-            { name: isole, geofabrik-url: https://download.geofabrik.de/europe/italy/isole-latest.osm.pbf, state: "0200"},
-            { name: nord-est, geofabrik-url: https://download.geofabrik.de/europe/italy/nord-est-latest.osm.pbf, state: "0300"},
-            { name: nord-ovest, geofabrik-url: https://download.geofabrik.de/europe/italy/nord-ovest-latest.osm.pbf, state: "0400"},
-            { name: sud, geofabrik-url: https://download.geofabrik.de/europe/italy/sud-latest.osm.pbf, state: "0500"},
+            {name: centro, url: https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf, state: "0100"},
+            {name: isole, url: https://download.geofabrik.de/europe/italy/isole-latest.osm.pbf, state: "0200"},
+            {name: nord-est, url: https://download.geofabrik.de/europe/italy/nord-est-latest.osm.pbf, state: "0300"},
+            {name: nord-ovest, url: https://download.geofabrik.de/europe/italy/nord-ovest-latest.osm.pbf, state: "0400"},
+            {name: sud, url: https://download.geofabrik.de/europe/italy/sud-latest.osm.pbf, state: "0500"},
           ]
 
     steps:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          wget ${{ matrix.maps.url }} -O out.pbf
           python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"

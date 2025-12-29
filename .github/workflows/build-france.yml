@@ -18,33 +18,33 @@ jobs:
       matrix:
         maps:
           [
-            { name: alsace , geofabrik-url:  https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf , state: "0100"},
-            { name: aquitaine , geofabrik-url:  https://download.geofabrik.de/europe/france/aquitaine-latest.osm.pbf , state: "0200"},
-            { name: auvergne , geofabrik-url:  https://download.geofabrik.de/europe/france/auvergne-latest.osm.pbf , state: "0300"},
-            { name: basse-normandie , geofabrik-url:  https://download.geofabrik.de/europe/france/basse-normandie-latest.osm.pbf , state: "0400"},
-            { name: bourgogne , geofabrik-url:  https://download.geofabrik.de/europe/france/bourgogne-latest.osm.pbf , state: "0500"},
-            { name: bretagne , geofabrik-url:  https://download.geofabrik.de/europe/france/bretagne-latest.osm.pbf , state: "0600"},
-            { name: centre , geofabrik-url:  https://download.geofabrik.de/europe/france/centre-latest.osm.pbf , state: "0700"},
-            { name: champagne-ardenne , geofabrik-url:  https://download.geofabrik.de/europe/france/champagne-ardenne-latest.osm.pbf , state: "0800"},
-            { name: corse , geofabrik-url:  https://download.geofabrik.de/europe/france/corse-latest.osm.pbf , state: "0900"},
-            { name: franche-comte , geofabrik-url:  https://download.geofabrik.de/europe/france/franche-comte-latest.osm.pbf , state: "1000"},
-            { name: guadeloupe , geofabrik-url:  https://download.geofabrik.de/europe/france/guadeloupe-latest.osm.pbf , state: "1100"},
-            { name: guyane , geofabrik-url:  https://download.geofabrik.de/europe/france/guyane-latest.osm.pbf , state: "1200"},
-            { name: haute-normandie , geofabrik-url:  https://download.geofabrik.de/europe/france/haute-normandie-latest.osm.pbf , state: "1300"},
-            { name: ile-de-france , geofabrik-url:  https://download.geofabrik.de/europe/france/ile-de-france-latest.osm.pbf , state: "1400"},
-            { name: languedoc-roussillon , geofabrik-url:  https://download.geofabrik.de/europe/france/languedoc-roussillon-latest.osm.pbf , state: "1500"},
-            { name: limousin , geofabrik-url:  https://download.geofabrik.de/europe/france/limousin-latest.osm.pbf , state: "1600"},
-            { name: lorraine , geofabrik-url:  https://download.geofabrik.de/europe/france/lorraine-latest.osm.pbf , state: "1700"},
-            { name: martinique , geofabrik-url:  https://download.geofabrik.de/europe/france/martinique-latest.osm.pbf , state: "1800"},
-            { name: mayotte , geofabrik-url:  https://download.geofabrik.de/europe/france/mayotte-latest.osm.pbf , state: "1900"},
-            { name: midi-pyrenees , geofabrik-url:  https://download.geofabrik.de/europe/france/midi-pyrenees-latest.osm.pbf , state: "2000"},
-            { name: nord-pas-de-calais , geofabrik-url:  https://download.geofabrik.de/europe/france/nord-pas-de-calais-latest.osm.pbf , state: "2100"},
-            { name: pays-de-la-loire , geofabrik-url:  https://download.geofabrik.de/europe/france/pays-de-la-loire-latest.osm.pbf , state: "2200"},
-            { name: picardie , geofabrik-url:  https://download.geofabrik.de/europe/france/picardie-latest.osm.pbf , state: "2300"},
-            { name: poitou-charentes , geofabrik-url:  https://download.geofabrik.de/europe/france/poitou-charentes-latest.osm.pbf , state: "2400"},
-            { name: provence-alpes-cote-d-azur , geofabrik-url:  https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-latest.osm.pbf , state: "2500"},
-            { name: reunion , geofabrik-url:  https://download.geofabrik.de/europe/france/reunion-latest.osm.pbf , state: "2600"},
-            { name: rhone-alpes , geofabrik-url:  https://download.geofabrik.de/europe/france/rhone-alpes-latest.osm.pbf , state: "2700"},
+            {name: alsace, url: https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf, state: "0100"},
+            {name: aquitaine, url: https://download.geofabrik.de/europe/france/aquitaine-latest.osm.pbf, state: "0200"},
+            {name: auvergne, url: https://download.geofabrik.de/europe/france/auvergne-latest.osm.pbf, state: "0300"},
+            {name: basse-normandie, url: https://download.geofabrik.de/europe/france/basse-normandie-latest.osm.pbf, state: "0400"},
+            {name: bourgogne, url: https://download.geofabrik.de/europe/france/bourgogne-latest.osm.pbf, state: "0500"},
+            {name: bretagne, url: https://download.geofabrik.de/europe/france/bretagne-latest.osm.pbf, state: "0600"},
+            {name: centre, url: https://download.geofabrik.de/europe/france/centre-latest.osm.pbf, state: "0700"},
+            {name: champagne-ardenne, url: https://download.geofabrik.de/europe/france/champagne-ardenne-latest.osm.pbf, state: "0800"},
+            {name: corse, url: https://download.geofabrik.de/europe/france/corse-latest.osm.pbf, state: "0900"},
+            {name: franche-comte, url: https://download.geofabrik.de/europe/france/franche-comte-latest.osm.pbf, state: "1000"},
+            {name: guadeloupe, url: https://download.geofabrik.de/europe/france/guadeloupe-latest.osm.pbf, state: "1100"},
+            {name: guyane, url: https://download.geofabrik.de/europe/france/guyane-latest.osm.pbf, state: "1200"},
+            {name: haute-normandie, url: https://download.geofabrik.de/europe/france/haute-normandie-latest.osm.pbf, state: "1300"},
+            {name: ile-de-france, url: https://download.geofabrik.de/europe/france/ile-de-france-latest.osm.pbf, state: "1400"},
+            {name: languedoc-roussillon, url: https://download.geofabrik.de/europe/france/languedoc-roussillon-latest.osm.pbf, state: "1500"},
+            {name: limousin, url: https://download.geofabrik.de/europe/france/limousin-latest.osm.pbf, state: "1600"},
+            {name: lorraine, url: https://download.geofabrik.de/europe/france/lorraine-latest.osm.pbf, state: "1700"},
+            {name: martinique, url: https://download.geofabrik.de/europe/france/martinique-latest.osm.pbf, state: "1800"},
+            {name: mayotte, url: https://download.geofabrik.de/europe/france/mayotte-latest.osm.pbf, state: "1900"},
+            {name: midi-pyrenees, url: https://download.geofabrik.de/europe/france/midi-pyrenees-latest.osm.pbf, state: "2000"},
+            {name: nord-pas-de-calais, url: https://download.geofabrik.de/europe/france/nord-pas-de-calais-latest.osm.pbf, state: "2100"},
+            {name: pays-de-la-loire, url: https://download.geofabrik.de/europe/france/pays-de-la-loire-latest.osm.pbf, state: "2200"},
+            {name: picardie, url: https://download.geofabrik.de/europe/france/picardie-latest.osm.pbf, state: "2300"},
+            {name: poitou-charentes, url: https://download.geofabrik.de/europe/france/poitou-charentes-latest.osm.pbf, state: "2400"},
+            {name: provence-alpes-cote-d-azur, url: https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-latest.osm.pbf, state: "2500"},
+            {name: reunion, url: https://download.geofabrik.de/europe/france/reunion-latest.osm.pbf, state: "2600"},
+            {name: rhone-alpes, url: https://download.geofabrik.de/europe/france/rhone-alpes-latest.osm.pbf, state: "2700"},
           ]
 
     steps:
@@ -70,7 +70,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          wget ${{ matrix.maps.url }} -O out.pbf
           python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"

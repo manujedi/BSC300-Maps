@@ -18,11 +18,11 @@ jobs:
       matrix:
         maps:
           [
-            { name: bermuda , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/bermuda-latest.osm.pbf , state: "0100"},
-            { name: england , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/england-latest.osm.pbf , state: "0200"},
-            { name: falklands , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/falklands-latest.osm.pbf , state: "0300"},
-            { name: scotland , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/scotland-latest.osm.pbf , state: "0400"},
-            { name: wales , geofabrik-url:  https://download.geofabrik.de/europe/united-kingdom/wales-latest.osm.pbf , state: "0500"},
+            {name: bermuda, url: https://download.geofabrik.de/europe/united-kingdom/bermuda-latest.osm.pbf, state: "0100"},
+            {name: england, url: https://download.geofabrik.de/europe/united-kingdom/england-latest.osm.pbf, state: "0200"},
+            {name: falklands, url: https://download.geofabrik.de/europe/united-kingdom/falklands-latest.osm.pbf, state: "0300"},
+            {name: scotland, url: https://download.geofabrik.de/europe/united-kingdom/scotland-latest.osm.pbf, state: "0400"},
+            {name: wales, url: https://download.geofabrik.de/europe/united-kingdom/wales-latest.osm.pbf, state: "0500"},
           ]
 
     steps:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          wget ${{ matrix.maps.url }} -O out.pbf
           python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"

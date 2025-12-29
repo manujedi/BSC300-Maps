@@ -18,18 +18,18 @@ jobs:
       matrix:
         maps:
           [
-            { name: Drenthe, geofabrik-url: https://download.geofabrik.de/europe/netherlands/drenthe-latest.osm.pbf, state: "0100"},
-            { name: Flevoland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/flevoland-latest.osm.pbf, state: "0200"},
-            { name: Friesland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/friesland-latest.osm.pbf, state: "0300"},
-            { name: Gelderland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/gelderland-latest.osm.pbf, state: "0400"},
-            { name: Groningen, geofabrik-url: https://download.geofabrik.de/europe/netherlands/groningen-latest.osm.pbf, state: "0500"},
-            { name: Limburg, geofabrik-url: https://download.geofabrik.de/europe/netherlands/limburg-latest.osm.pbf, state: "0600"},
-            { name: Noord-Brabant, geofabrik-url: https://download.geofabrik.de/europe/netherlands/noord-brabant-latest.osm.pbf, state: "0700"},
-            { name: Noord-Holland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/noord-holland-latest.osm.pbf, state: "0800"},
-            { name: Overijssel, geofabrik-url: https://download.geofabrik.de/europe/netherlands/overijssel-latest.osm.pbf, state: "0900"},
-            { name: Utrecht, geofabrik-url: https://download.geofabrik.de/europe/netherlands/utrecht-latest.osm.pbf, state: "1000"},
-            { name: Zeeland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/zeeland-latest.osm.pbf, state: "1100"},
-            { name: Zuid-Holland, geofabrik-url: https://download.geofabrik.de/europe/netherlands/zuid-holland-latest.osm.pbf, state: "1200"},
+            {name: Drenthe, url: https://download.geofabrik.de/europe/netherlands/drenthe-latest.osm.pbf, state: "0100"},
+            {name: Flevoland, url: https://download.geofabrik.de/europe/netherlands/flevoland-latest.osm.pbf, state: "0200"},
+            {name: Friesland, url: https://download.geofabrik.de/europe/netherlands/friesland-latest.osm.pbf, state: "0300"},
+            {name: Gelderland, url: https://download.geofabrik.de/europe/netherlands/gelderland-latest.osm.pbf, state: "0400"},
+            {name: Groningen, url: https://download.geofabrik.de/europe/netherlands/groningen-latest.osm.pbf, state: "0500"},
+            {name: Limburg, url: https://download.geofabrik.de/europe/netherlands/limburg-latest.osm.pbf, state: "0600"},
+            {name: Noord-Brabant, url: https://download.geofabrik.de/europe/netherlands/noord-brabant-latest.osm.pbf, state: "0700"},
+            {name: Noord-Holland, url: https://download.geofabrik.de/europe/netherlands/noord-holland-latest.osm.pbf, state: "0800"},
+            {name: Overijssel, url: https://download.geofabrik.de/europe/netherlands/overijssel-latest.osm.pbf, state: "0900"},
+            {name: Utrecht, url: https://download.geofabrik.de/europe/netherlands/utrecht-latest.osm.pbf, state: "1000"},
+            {name: Zeeland, url: https://download.geofabrik.de/europe/netherlands/zeeland-latest.osm.pbf, state: "1100"},
+            {name: Zuid-Holland, url: https://download.geofabrik.de/europe/netherlands/zuid-holland-latest.osm.pbf, state: "1200"},
           ]
 
     steps:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          wget ${{ matrix.maps.url }} -O out.pbf
           python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"

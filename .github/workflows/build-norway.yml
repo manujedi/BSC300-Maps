@@ -22,7 +22,7 @@ jobs:
       - name: Setup Env
         run: |
           sudo apt-get update 
-          sudo apt-get install wget openjdk-21-jre python3 pip time
+          sudo apt-get install wget openjdk-21-jre python3 pip
           pip install numpy
 
       - name: omsis-cache
@@ -38,7 +38,7 @@ jobs:
 
       - name: Build
         run: |
-          /usr/bin/time -v python generate_map.py -i "$url" -c $countrycode -s 0000
+          python generate_map.py -i "$url" -c $countrycode -s 0000
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4

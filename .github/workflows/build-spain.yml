@@ -18,24 +18,24 @@ jobs:
       matrix:
         maps:
           [
-            { name: andalucia , geofabrik-url:  https://download.geofabrik.de/europe/spain/andalucia-latest.osm.pbf , state: "0100"},
-            { name: aragon , geofabrik-url:  https://download.geofabrik.de/europe/spain/aragon-latest.osm.pbf , state: "0200"},
-            { name: asturias , geofabrik-url:  https://download.geofabrik.de/europe/spain/asturias-latest.osm.pbf , state: "0300"},
-            { name: cantabria , geofabrik-url:  https://download.geofabrik.de/europe/spain/cantabria-latest.osm.pbf , state: "0400"},
-            { name: castilla-la-mancha , geofabrik-url:  https://download.geofabrik.de/europe/spain/castilla-la-mancha-latest.osm.pbf , state: "0500"},
-            { name: castilla-y-leon , geofabrik-url:  https://download.geofabrik.de/europe/spain/castilla-y-leon-latest.osm.pbf , state: "0600"},
-            { name: cataluna , geofabrik-url:  https://download.geofabrik.de/europe/spain/cataluna-latest.osm.pbf , state: "0700"},
-            { name: ceuta , geofabrik-url:  https://download.geofabrik.de/europe/spain/ceuta-latest.osm.pbf , state: "0800"},
-            { name: extremadura , geofabrik-url:  https://download.geofabrik.de/europe/spain/extremadura-latest.osm.pbf , state: "0900"},
-            { name: galicia , geofabrik-url:  https://download.geofabrik.de/europe/spain/galicia-latest.osm.pbf , state: "1000"},
-            { name: islas-baleares , geofabrik-url:  https://download.geofabrik.de/europe/spain/islas-baleares-latest.osm.pbf , state: "1100"},
-            { name: la-rioja , geofabrik-url:  https://download.geofabrik.de/europe/spain/la-rioja-latest.osm.pbf , state: "1200"},
-            { name: madrid , geofabrik-url:  https://download.geofabrik.de/europe/spain/madrid-latest.osm.pbf , state: "1300"},
-            { name: melilla , geofabrik-url:  https://download.geofabrik.de/europe/spain/melilla-latest.osm.pbf , state: "1400"},
-            { name: murcia , geofabrik-url:  https://download.geofabrik.de/europe/spain/murcia-latest.osm.pbf , state: "1500"},
-            { name: navarra , geofabrik-url:  https://download.geofabrik.de/europe/spain/navarra-latest.osm.pbf , state: "1600"},
-            { name: pais-vasco , geofabrik-url:  https://download.geofabrik.de/europe/spain/pais-vasco-latest.osm.pbf , state: "1700"},
-            { name: valencia , geofabrik-url:  https://download.geofabrik.de/europe/spain/valencia-latest.osm.pbf , state: "1800"},
+            {name: andalucia, url: https://download.geofabrik.de/europe/spain/andalucia-latest.osm.pbf, state: "0100"},
+            {name: aragon, url: https://download.geofabrik.de/europe/spain/aragon-latest.osm.pbf, state: "0200"},
+            {name: asturias, url: https://download.geofabrik.de/europe/spain/asturias-latest.osm.pbf, state: "0300"},
+            {name: cantabria, url: https://download.geofabrik.de/europe/spain/cantabria-latest.osm.pbf, state: "0400"},
+            {name: castilla-la-mancha, url: https://download.geofabrik.de/europe/spain/castilla-la-mancha-latest.osm.pbf, state: "0500"},
+            {name: castilla-y-leon, url: https://download.geofabrik.de/europe/spain/castilla-y-leon-latest.osm.pbf, state: "0600"},
+            {name: cataluna, url: https://download.geofabrik.de/europe/spain/cataluna-latest.osm.pbf, state: "0700"},
+            {name: ceuta, url: https://download.geofabrik.de/europe/spain/ceuta-latest.osm.pbf, state: "0800"},
+            {name: extremadura, url: https://download.geofabrik.de/europe/spain/extremadura-latest.osm.pbf, state: "0900"},
+            {name: galicia, url: https://download.geofabrik.de/europe/spain/galicia-latest.osm.pbf, state: "1000"},
+            {name: islas-baleares, url: https://download.geofabrik.de/europe/spain/islas-baleares-latest.osm.pbf, state: "1100"},
+            {name: la-rioja, url: https://download.geofabrik.de/europe/spain/la-rioja-latest.osm.pbf, state: "1200"},
+            {name: madrid, url: https://download.geofabrik.de/europe/spain/madrid-latest.osm.pbf, state: "1300"},
+            {name: melilla, url: https://download.geofabrik.de/europe/spain/melilla-latest.osm.pbf, state: "1400"},
+            {name: murcia, url: https://download.geofabrik.de/europe/spain/murcia-latest.osm.pbf, state: "1500"},
+            {name: navarra, url: https://download.geofabrik.de/europe/spain/navarra-latest.osm.pbf, state: "1600"},
+            {name: pais-vasco, url: https://download.geofabrik.de/europe/spain/pais-vasco-latest.osm.pbf, state: "1700"},
+            {name: valencia, url: https://download.geofabrik.de/europe/spain/valencia-latest.osm.pbf, state: "1800"},
           ]
 
     steps:
@@ -61,7 +61,7 @@ jobs:
 
       - name: Build
         run: |
-          wget ${{ matrix.maps.geofabrik-url }} -O out.pbf
+          wget ${{ matrix.maps.url }} -O out.pbf
           python generate_map.py -i out.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"
