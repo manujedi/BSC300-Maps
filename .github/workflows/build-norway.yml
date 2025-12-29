@@ -24,12 +24,8 @@ jobs:
           sudo apt-get update 
           sudo apt-get install wget openjdk-21-jre python3 pip
           pip install numpy
-
-      - name: Free Disk Space 
-        run: |
-          df -h /
+          echo "freeing ~10gb of disk space"
           sudo rm -rf /usr/local/lib/android || true
-          df -h /
 
       - name: omsis-cache
         uses: actions/cache/restore@v4

@@ -44,6 +44,10 @@ tag_file = os.path.realpath(tag_file)
 tmp_map_file = os.path.realpath("tmp.map")
 bin_dir = os.path.realpath(bin_dir)
 
+#make sure tmp is not in ram
+temp_dir = Path("tmp").mkdir(parents=True, exist_ok=True)
+os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath("tmp")
+
 # run
 cmd = cmd.format(input_map_file=input_map_file, output_map_file=tmp_map_file, tag_file=tag_file)
 subprocess.run(cmd.split(' '), cwd=bin_dir)

@@ -1,8 +1,7 @@
-name: liechtenstein
+name: country
 
 env:
-  url: https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
-  countrycode: FL
+  countrycode: CC
 
 on:
   workflow_dispatch:
@@ -14,6 +13,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maps:
+          []
 
     steps:
       - name: checkout
@@ -40,11 +44,11 @@ jobs:
 
       - name: Build
         run: |
-          /usr/bin/time -v python generate_map.py -i "$url" -c $countrycode -s 0000
+          /usr/bin/time -v python generate_map.py -i ${{ matrix.maps.url }} -c $countrycode -s ${{ matrix.maps.state }}
 
-      - name: 'Upload Artifact'
+      - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.workflow }}
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}
           path: ./*.map
 

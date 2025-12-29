@@ -1,8 +1,8 @@
-name: liechtenstein
+name: country
 
 env:
-  url: https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
-  countrycode: FL
+  url: url
+  countrycode: CC
 
 on:
   workflow_dispatch:
