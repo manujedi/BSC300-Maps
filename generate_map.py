@@ -7,6 +7,7 @@ import argparse
 import subprocess
 import tempfile
 import numpy as np
+from urllib.parse import urlparse
 from pathlib import Path
 from datetime import datetime
 
@@ -29,13 +30,17 @@ parser.add_argument("-s", required=True, type=str, help="state (e.g. 0000)")
 args = parser.parse_args()
 
 # paths
-input_map_file = os.path.realpath(args.i)
+try:
+    result = urlparse(args.i)
+    if all([result.scheme, result.netloc]):
+        # should be a URL
+        input_map_file = args.i
+except:
+    # it is a file, not an URL
+    input_map_file = os.path.realpath(args.i)
 tag_file = os.path.realpath(tag_file)
 tmp_map_file = os.path.realpath("tmp.map")
 bin_dir = os.path.realpath(bin_dir)
-
-temp_dir = tempfile.TemporaryDirectory()
-os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + temp_dir.name
 
 # run
 cmd = cmd.format(input_map_file=input_map_file, output_map_file=tmp_map_file, tag_file=tag_file)
