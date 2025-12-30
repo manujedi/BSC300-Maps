@@ -2,6 +2,41 @@
 
 # [Map Downloads here](https://github.com/manujedi/bsc300_maps/actions) _(you need to be logged in to github)_
 
+direct links:
+
+[![albania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-albania.yml)
+[![austria](https://github.com/manujedi/bsc300_maps/actions/workflows/build-austria.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-austria.yml)
+[![belgium](https://github.com/manujedi/bsc300_maps/actions/workflows/build-belgium.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-belgium.yml)
+[![bosnia-herzegovina](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bosnia-herzegovina.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bosnia-herzegovina.yml)
+[![bulgaria](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bulgaria.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bulgaria.yml)
+[![croatia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-croatia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-croatia.yml)
+[![czech-republic](https://github.com/manujedi/bsc300_maps/actions/workflows/build-czech-republic.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-czech-republic.yml)
+[![denmark](https://github.com/manujedi/bsc300_maps/actions/workflows/build-denmark.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-denmark.yml)
+[![estonia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-estonia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-estonia.yml)
+[![finland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-finland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-finland.yml)
+[![france](https://github.com/manujedi/bsc300_maps/actions/workflows/build-france.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-france.yml)
+[![germany](https://github.com/manujedi/bsc300_maps/actions/workflows/build-germany.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-germany.yml)
+[![greece](https://github.com/manujedi/bsc300_maps/actions/workflows/build-greece.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-greece.yml)
+[![hungary](https://github.com/manujedi/bsc300_maps/actions/workflows/build-hungary.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-hungary.yml)
+[![ireland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-ireland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-ireland.yml)
+[![italy](https://github.com/manujedi/bsc300_maps/actions/workflows/build-italy.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-italy.yml)
+[![latvia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-latvia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-latvia.yml)
+[![liechtenstein](https://github.com/manujedi/bsc300_maps/actions/workflows/build-liechtenstein.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-liechtenstein.yml)
+[![lithuania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-lithuania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-lithuania.yml)
+[![luxembourg](https://github.com/manujedi/bsc300_maps/actions/workflows/build-luxembourg.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-luxembourg.yml)
+[![netherlands](https://github.com/manujedi/bsc300_maps/actions/workflows/build-netherlands.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-netherlands.yml)
+[![norway](https://github.com/manujedi/bsc300_maps/actions/workflows/build-norway.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-norway.yml)
+[![poland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-poland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-poland.yml)
+[![portugal](https://github.com/manujedi/bsc300_maps/actions/workflows/build-portugal.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-portugal.yml)
+[![romania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-romania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-romania.yml)
+[![serbia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-serbia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-serbia.yml)
+[![slovakia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovakia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovakia.yml)
+[![slovenia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovenia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovenia.yml)
+[![spain](https://github.com/manujedi/bsc300_maps/actions/workflows/build-spain.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-spain.yml)
+[![sweden](https://github.com/manujedi/bsc300_maps/actions/workflows/build-sweden.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-sweden.yml)
+[![switzerland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-switzerland.yml)
+[![united-kingdom](https://github.com/manujedi/bsc300_maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-united-kingdom.yml)
+
 # IGPSPORT BSC300 / BSC300T Map Creator
 
 This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps and ported to python for simpler math. If you are logged in to github you should be able to download the artifacts.
