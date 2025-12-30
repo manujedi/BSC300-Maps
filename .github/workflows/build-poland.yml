@@ -53,7 +53,7 @@ jobs:
         id: cache
         with:
           path: osmosis
-          key: osmsis-cache
+          key: osmosis-cache
 
       - name: omsis
         if: steps.cache.outputs.cache-hit != 'true'
