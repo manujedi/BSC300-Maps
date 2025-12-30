@@ -50,7 +50,10 @@ os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath("tmp")
 
 # run
 cmd = cmd.format(input_map_file=input_map_file, output_map_file=tmp_map_file, tag_file=tag_file)
-subprocess.run(cmd.split(' '), cwd=bin_dir)
+process = subprocess.run(cmd.split(' '), cwd=bin_dir)
+
+if process.returncode != 0:
+    exit(process.returncode)
 
 # calc name
 class MapsForgeHeader(ctypes.BigEndianStructure):
