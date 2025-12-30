@@ -5,7 +5,7 @@ import math
 import os
 import argparse
 import subprocess
-import tempfile
+import pprint
 import numpy as np
 from urllib.parse import urlparse
 from pathlib import Path
@@ -47,6 +47,7 @@ bin_dir = os.path.realpath(bin_dir)
 #make sure tmp is not in ram
 temp_dir = Path("tmp").mkdir(parents=True, exist_ok=True)
 os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath("tmp")
+os.environ["_JAVA_OPTIONS"] = "-Xmx8g"
 
 # run
 cmd = cmd.format(input_map_file=input_map_file, output_map_file=tmp_map_file, tag_file=tag_file)
@@ -55,21 +56,172 @@ process = subprocess.run(cmd.split(' '), cwd=bin_dir)
 if process.returncode != 0:
     exit(process.returncode)
 
-# calc name
-class MapsForgeHeader(ctypes.BigEndianStructure):
-    _pack_ = 1
-    _fields_ = [
-        ("magic_byte", ctypes.c_char * 20),
-        ("header_size", ctypes.c_uint32),
-        ("file_version", ctypes.c_uint32),
-        ("file_size", ctypes.c_uint64),
-        ("date_of_creation", ctypes.c_uint64),
-        ("minLat", ctypes.c_int32),
-        ("minLon", ctypes.c_int32),
-        ("maxLat", ctypes.c_int32),  # most nothern point
-        ("maxLon", ctypes.c_int32),
-        ("tile_size", ctypes.c_uint16),
-    ]
+class MapsForgeHeader:
+    magic_byte: str
+    header_size: int
+    file_version: int
+    file_size: int
+    date_of_creation: datetime
+    minLat: int
+    minLon: int
+    maxLat: int
+    maxLon: int
+    tile_size: int
+    projection: str
+    flags: int
+    mapStartLat: int
+    mapStartLon: int
+    start_zoom_level: int
+    language:str
+    comment:str
+    created_by:str
+    poiTags:list
+    wayTags:list
+    zoom_interval_configs:list
+
+def parseMapsForgeHeader(file: Path) -> MapsForgeHeader:
+
+    def parseVBEU(data: bytes):
+        idx = 0
+        value = 0
+        while data[idx] & 0x80:
+            value += (data[idx] & 0x7F) << (7 * idx)
+            idx += 1
+        value += (data[idx] & 0x7F) << (7 * idx)
+        idx += 1
+
+        return value, idx
+
+    def parseVBES(data: bytes):
+        idx = 0
+        value = 0
+        while data[idx] & 0x80:
+            value += (data[idx] & 0x7F) << (7 * idx)
+            idx += 1
+        value += (data[idx] & 0x3F) << (7 * idx)
+        value *= -1 if data[idx] & 0x40 else 1
+        idx += 1
+
+        return value, idx
+    
+    data = open(file, "rb").read(2000)
+    header = MapsForgeHeader()
+    idx = 0
+    header.magic_byte = data[idx : idx + 20]
+    idx += 20
+    header.header_size = int.from_bytes(data[idx : idx + 4])
+    idx += 4
+
+
+    assert header.header_size < 1900, "didn't read enough bytes"
+
+    header.file_version = int.from_bytes(data[idx : idx + 4])
+    idx += 4
+    header.file_size = int.from_bytes(data[idx : idx + 8])
+    idx += 8
+    header.date_of_creation = datetime.fromtimestamp(
+        int.from_bytes(data[idx : idx + 8]) / 1000
+    )
+    idx += 8
+    header.minLat = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+    idx += 4
+    header.minLon = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+    idx += 4
+    header.maxLat = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+    idx += 4
+    header.maxLon = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+    idx += 4
+    header.tile_size = int.from_bytes(data[idx : idx + 2])
+    idx += 2
+
+    strlen, used_bytes = parseVBEU(data[idx:])
+    idx += used_bytes
+    header.projection = data[idx : idx + strlen]
+    idx += strlen
+
+    flags = data[idx]
+    header.flags = flags
+    idx += 1
+
+    if flags & 0x40:
+        header.mapStartLat = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+        idx += 4
+        header.mapStartLon = int.from_bytes(data[idx : idx + 4], signed=True) / 10**6
+        idx += 4
+
+    if flags & 0x20:
+        header.start_zoom_level = int.from_bytes(data[idx : idx + 1])
+        idx += 1
+
+    if flags & 0x10:
+        strlen, used_bytes = parseVBEU(data[idx:])
+        idx += used_bytes
+        header.language = data[idx : idx + strlen]
+        idx += strlen
+
+    if flags & 0x08:
+        strlen, used_bytes = parseVBEU(data[idx:])
+        idx += used_bytes
+        header.comment = data[idx : idx + strlen]
+        idx += strlen
+
+    if flags & 0x04:
+        strlen, used_bytes = parseVBEU(data[idx:])
+        idx += used_bytes
+        header.created_by = data[idx : idx + strlen]
+        idx += strlen
+
+    if flags & 0x03:
+        print("parse error, future usage fileds")
+
+    poiTagsCnt = int.from_bytes(data[idx : idx + 2])
+    idx += 2
+    header.poiTags = []
+    for i in range(poiTagsCnt):
+        strlen, used_bytes = parseVBEU(data[idx:])
+        idx += used_bytes
+        tag = data[idx : idx + strlen]
+        idx += strlen
+        header.poiTags.append(tag)
+    header.poiTags.sort()
+
+    wayTagsCnt = int.from_bytes(data[idx : idx + 2])
+    idx += 2
+    header.wayTags = []
+    for i in range(wayTagsCnt):
+        strlen, used_bytes = parseVBEU(data[idx:])
+        idx += used_bytes
+        tag = data[idx : idx + strlen]
+        idx += strlen
+        header.wayTags.append(tag)
+    header.wayTags.sort()
+
+    amount_zoom_intervals = int.from_bytes(data[idx:idx+1])
+    idx += 1
+
+    header.zoom_interval_configs = []
+    for i in range(amount_zoom_intervals):
+        basezoom = int.from_bytes(data[idx : idx + 1])
+        idx += 1
+        minzoom = int.from_bytes(data[idx : idx + 1])
+        idx += 1
+        maxzoom = int.from_bytes(data[idx : idx + 1])
+        idx += 1
+        absstart = int.from_bytes(data[idx : idx + 8])
+        idx += 8
+        sizesub = int.from_bytes(data[idx : idx + 8])
+        idx += 8
+        header.zoom_interval_configs.append({
+            "basezoom": basezoom,
+            "minzoom": minzoom,
+            "maxzoom": maxzoom,
+            "absstart": absstart,
+            "sizesub": sizesub,
+        })
+
+    # assert(idx - 24 == header.header_size)
+
+    return header
 
 # with leading zeros, 3digits
 def intToB36(number):
@@ -80,7 +232,14 @@ def merY(lat):
     return (1 - math.log(math.tan(lat_rad) + (1/math.cos(lat_rad))) / math.pi) / 2
 
 
-header = MapsForgeHeader.from_buffer_copy(Path(tmp_map_file).read_bytes())
+header = parseMapsForgeHeader(Path(tmp_map_file))
+pprint.pp("generated file:")
+pprint.pp(vars(header))
+
+# some checks if file was correctly created
+assert b'mapsforge binary OSM' == header.magic_byte
+assert os.path.getsize(tmp_map_file) == header.file_size
+
 
 n = (1<<13)
 lon_start = math.floor(((header.minLon/1000000 + 180) / 360) * n)
