@@ -1,4 +1,4 @@
-name: start map builds
+name: checkJava
 
 on: 
   workflow_dispatch:
