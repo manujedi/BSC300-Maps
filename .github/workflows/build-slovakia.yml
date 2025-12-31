@@ -2,7 +2,7 @@ name: slovakia
 
 env:
   url: https://download.geofabrik.de/europe/slovakia-latest.osm.pbf
-  countrycode: SL
+  countrycode: SK
 
 on:
   workflow_dispatch:
