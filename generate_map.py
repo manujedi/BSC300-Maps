@@ -14,7 +14,8 @@ from datetime import datetime
 # config
 bin_dir = "osmosis/bin"
 tag_file = "tag-igpsport.xml"
-cmd = './osmosis --rbf file={input_map_file} --mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
+#cmd = './osmosis --rbf file={input_map_file} --mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
+cmd = './osmosis --rbf file={input_map_file} --tag-filter reject-ways amenity=* highway=* building=* natural=* landuse=* leisure=* shop=* waterway=* man_made=* railway=* tourism=* barrier=* boundary=* power=* historic=* emergency=* office=* craft=* healthcare=* aeroway=* route=* public_transport=* bridge=* tunnel=* addr:housenumber=* addr:street=* addr:city=* addr:postcode=* name=* ref=* surface=* access=* foot=* bicycle=* motor_vehicle=* oneway=* lit=* width=* maxspeed=* mountain_pass=* religion=* tracktype=* area=* sport=* piste=* admin_level=* aerialway=* lock=* roof=* military=* wood=* --tag-filter accept-relations natural=water place=islet --used-node --rbf file={input_map_file} --tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* --tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* --used-node --merge --mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
 
 if not os.path.isdir(bin_dir):
     print("setup osmosis first")
