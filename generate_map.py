@@ -16,22 +16,23 @@ bin_dir = "osmosis/bin"
 tag_file = "tag-igpsport.xml"
 # cmd = './osmosis --rbf file={input_map_file} --mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
 
-# cmd = ('./osmosis --rbf file={input_map_file} '
-#        '--tag-filter reject-ways amenity=* highway=* building=* natural=* landuse=* leisure=* shop=* waterway=* man_made=* railway=* tourism=* barrier=* boundary=* power=* historic=* emergency=* office=* craft=* healthcare=* aeroway=* route=* public_transport=* bridge=* tunnel=* addr:housenumber=* addr:street=* addr:city=* addr:postcode=* name=* ref=* surface=* access=* foot=* bicycle=* motor_vehicle=* oneway=* lit=* width=* maxspeed=* mountain_pass=* religion=* tracktype=* area=* sport=* piste=* admin_level=* aerialway=* lock=* roof=* military=* wood=* --tag-filter accept-relations natural=water place=islet '
-#        '--used-node '
-#        '--rbf file={input_map_file} --tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* '
-#        '--tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* '
-#        '--used-node '
-#        '--merge '
-#        '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}')
+cmd = ('./osmosis --rbf file={input_map_file} '
+       '--tag-filter reject-ways amenity=* highway=* building=* natural=* landuse=* leisure=* shop=* waterway=* man_made=* railway=* tourism=* barrier=* boundary=* power=* historic=* emergency=* office=* craft=* healthcare=* aeroway=* route=* public_transport=* bridge=* tunnel=* addr:housenumber=* addr:street=* addr:city=* addr:postcode=* name=* ref=* surface=* access=* foot=* bicycle=* motor_vehicle=* oneway=* lit=* width=* maxspeed=* mountain_pass=* religion=* tracktype=* area=* sport=* piste=* admin_level=* aerialway=* lock=* roof=* military=* wood=* '
+       '--tag-filter accept-relations natural=water place=islet '
+       '--used-node '
+       '--rbf file={input_map_file} --tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* '
+       '--tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* '
+       '--used-node '
+       '--merge '
+       '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}')
 
-cmd = (
-    './osmosis --rbf file={input_map_file} workers=4 '
-    '--tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* '
-    '--tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* '
-    '--used-node '
-    '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
-)
+
+# use this if more all details are wanted, times out on github
+# cmd = (
+#     './osmosis --rbf file={input_map_file} workers=4 -b '
+#     '--used-node '
+#     '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
+# )
 
 if not os.path.isdir(bin_dir):
     print("setup osmosis first")
@@ -58,19 +59,20 @@ except:
     # probably a file if not an URL
     input_map_file = os.path.realpath(args.i)
 tag_file = os.path.realpath(tag_file)
-tmp_map_file = os.path.realpath("tmp.map")
+tmp_map_file = os.path.realpath(str(int(datetime.today().timestamp()*1000)) + "tmp.map")
 bin_dir = os.path.realpath(bin_dir)
 
 # make sure tmp is not in ram
-temp_dir = Path("tmp").mkdir(parents=True, exist_ok=True)
-os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath("tmp")
+temp_dir = str(int(datetime.today().timestamp()*1000)) + "_tmp"
+Path(temp_dir).mkdir(parents=True, exist_ok=True)
+os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath(temp_dir)
 os.environ["_JAVA_OPTIONS"] = "-Xmx8g"
 
 # run
 cmd = cmd.format(
     input_map_file=input_map_file, output_map_file=tmp_map_file, tag_file=tag_file
 )
-print("running" + cmd)
+print("running", cmd)
 process = subprocess.run(cmd.split(" "), cwd=bin_dir)
 
 if process.returncode != 0:
