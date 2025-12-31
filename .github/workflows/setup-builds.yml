@@ -52,10 +52,10 @@ jobs:
           path: osmosis
           key: osmosis-cache
 
-  cleanup-old-workflows:
-    runs-on: ubuntu-latest
-    steps:
-      - name: cleanup
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh run list --repo ${{ github.repository }} --limit 1000 --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id" --repo ${{ github.repository }} || continue; done
+  # cleanup-old-workflows:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: cleanup
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: gh run list --repo ${{ github.repository }} --limit 1000 --json databaseId -q '.[].databaseId' | while read id; do gh run delete "$id" --repo ${{ github.repository }} || continue; done
