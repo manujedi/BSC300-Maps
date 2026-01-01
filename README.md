@@ -1,4 +1,4 @@
-# Last Map Update: Wed Dec 31 18:14:29 UTC 2025
+# Last Map Update: Thu Jan  1 01:27:33 UTC 2026
 
 # [Map Downloads here](https://github.com/manujedi/bsc300_maps/actions) _(you need to be logged in to github)_
 
