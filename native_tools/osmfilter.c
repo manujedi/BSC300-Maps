@@ -389,6 +389,7 @@ const char* helptext=
 #include <unistd.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <stdbool.h>
 
 typedef uint8_t byte;
 typedef unsigned int uint;
