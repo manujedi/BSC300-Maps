@@ -46,9 +46,11 @@ jobs:
         run: |
           wget -q ${{ matrix.maps.url }} -O tmp.pbf
           ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
           ./osmosis/osmfilter tmp.o5m --keep="highway=* waterway=* landuse=* natural=* place=*" > tmp_filtered.o5m
+          rm tmp.o5m
           ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
-          rm tmp.pbf tmp.o5m tmp_filtered.o5m
+          rm tmp_filtered.o5m
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }}
 
       - name: "Upload Artifact"
