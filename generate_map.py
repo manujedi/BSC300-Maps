@@ -14,25 +14,23 @@ from datetime import datetime
 # config
 bin_dir = "osmosis/bin"
 tag_file = "tag-igpsport.xml"
-# cmd = './osmosis --rbf file={input_map_file} --mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
 
-cmd = ('./osmosis --rbf file={input_map_file} '
-       '--tag-filter reject-ways amenity=* highway=* building=* natural=* landuse=* leisure=* shop=* waterway=* man_made=* railway=* tourism=* barrier=* boundary=* power=* historic=* emergency=* office=* craft=* healthcare=* aeroway=* route=* public_transport=* bridge=* tunnel=* addr:housenumber=* addr:street=* addr:city=* addr:postcode=* name=* ref=* surface=* access=* foot=* bicycle=* motor_vehicle=* oneway=* lit=* width=* maxspeed=* mountain_pass=* religion=* tracktype=* area=* sport=* piste=* admin_level=* aerialway=* lock=* roof=* military=* wood=* '
-       '--tag-filter accept-relations natural=water place=islet '
-       '--used-node '
-       '--rbf file={input_map_file} --tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* '
-       '--tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* '
-       '--used-node '
-       '--merge '
-       '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}')
+# cmd = ('./osmosis --rbf file={input_map_file} '
+#        '--tag-filter reject-ways amenity=* highway=* building=* natural=* landuse=* leisure=* shop=* waterway=* man_made=* railway=* tourism=* barrier=* boundary=* power=* historic=* emergency=* office=* craft=* healthcare=* aeroway=* route=* public_transport=* bridge=* tunnel=* addr:housenumber=* addr:street=* addr:city=* addr:postcode=* name=* ref=* surface=* access=* foot=* bicycle=* motor_vehicle=* oneway=* lit=* width=* maxspeed=* mountain_pass=* religion=* tracktype=* area=* sport=* piste=* admin_level=* aerialway=* lock=* roof=* military=* wood=* '
+#        '--tag-filter accept-relations natural=water place=islet '
+#        '--used-node '
+#        '--rbf file={input_map_file} --tag-filter accept-ways highway=* waterway=* landuse=* natural=* place=* '
+#        '--tag-filter accept-relations highway=* waterway=* landuse=* natural=* place=* '
+#        '--used-node '
+#        '--merge '
+#        '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}')
 
 
-# use this if more all details are wanted, times out on github
-# cmd = (
-#     './osmosis --rbf file={input_map_file} workers=4 -b '
-#     '--used-node '
-#     '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
-# )
+cmd = (
+    './osmosis --rbf file={input_map_file} '
+    '--used-node '
+    '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
+)
 
 if not os.path.isdir(bin_dir):
     print("setup osmosis first")
@@ -127,7 +125,7 @@ def parseMapsForgeHeader(file: Path) -> MapsForgeHeader:
 
         return value, idx
 
-    data = open(file, "rb").read(2000)
+    data = open(file, "rb").read()
     header = MapsForgeHeader()
     idx = 0
     header.magic_byte = data[idx : idx + 20]
@@ -135,7 +133,7 @@ def parseMapsForgeHeader(file: Path) -> MapsForgeHeader:
     header.header_size = int.from_bytes(data[idx : idx + 4])
     idx += 4
 
-    assert header.header_size < 1900, "didn't read enough bytes"
+    #assert header.header_size < 1900, "didn't read enough bytes"
 
     header.file_version = int.from_bytes(data[idx : idx + 4])
     idx += 4
