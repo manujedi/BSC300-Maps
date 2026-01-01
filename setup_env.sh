@@ -18,3 +18,6 @@ mv ${TEMP_DIR}/osmosis/osmosis*/ ${BIN_DIR}
 mkdir -p ${BIN_DIR}/bin/plugins
 wget https://repo1.maven.org/maven2/org/mapsforge/mapsforge-map-writer/${MAPSFORGE_VERSION}/mapsforge-map-writer-${MAPSFORGE_VERSION}-jar-with-dependencies.jar -P ${BIN_DIR}/bin/plugins/
 
+# compile native tools
+gcc native_tools/osmconvert.c -O3 -lz -o osmosis/osmconvert
+gcc native_tools/osmfilter.c -O3 -lz -o osmosis/osmfilter
