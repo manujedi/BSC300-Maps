@@ -27,8 +27,7 @@ tag_file = "tag-igpsport.xml"
 
 
 cmd = (
-    './osmosis --rbf file={input_map_file} '
-    '--used-node '
+    './osmosis --rbf file={input_map_file} workers=4 -b '
     '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
 )
 

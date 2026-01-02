@@ -1,7 +1,6 @@
 name: denmark
 
 env:
-  url: https://download.geofabrik.de/europe/denmark-latest.osm.pbf
   countrycode: DK
 
 on:
@@ -14,6 +13,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maps:
+          [
+            {name: denmark, url: https://download.geofabrik.de/europe/denmark-latest.osm.pbf, state: "0000"},
+          ]
 
     steps:
       - name: checkout
@@ -38,20 +44,32 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: sh setup_env.sh
 
-      - name: Build
+      - name: Download
         run: |
-          wget -q "$url" -O tmp.pbf
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
           ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
           rm tmp.pbf
-          ./osmosis/osmfilter tmp.o5m --keep="highway=* waterway=* landuse=* natural=* place=*" > tmp_filtered.o5m
+
+      - name: filter
+        run: |
+          ./osmosis/osmfilter tmp.o5m --keep="highway=* waterway=* landuse=* natural=* place=*" --out-o5m > tmp_filtered.o5m
           rm tmp.o5m
+
+      - name: Convert for osmosis 
+        run: |
           ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
           rm tmp_filtered.o5m
-          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s 0000
 
-      - name: 'Upload Artifact'
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }}
+
+      - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.workflow }}
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}
           path: ./*.map
 
