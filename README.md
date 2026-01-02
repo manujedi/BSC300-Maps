@@ -47,6 +47,44 @@ It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/
 The idea is that we have up to date maps and not rely on the igpsport maps from 2023 and regions that are not officially available.
 If someone is interested, [this are the maps](https://manujedi.github.io/bsc300_maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
 
+## Map format
+- Format is mapsforge
+- Renderer on the BSC300:
+  - anything you want green use landuse=grass (--modify-tags="landuse=something to =grass")
+  - it can only render some amount of roads/ways. Even the original maps are not rendered fully. Random roads are missing.
+    - thats the reason why I filter extensively which ways to add.
+  - Code on this repo does not use simplification-factor for zoom levels 13 and 14. Original uses some factor > 0.5 making the maps even smaller but less accurate 
+
+  - Supported tags (colors from nightmode):
+    - thick yellow line
+      - primary
+      - primary_link
+      - trunk
+      - trunk_link
+    - less thick yellow
+      - secondary
+      - secondary_link
+      - tertiary
+      - tertiary_link
+    - thin white line
+      - cycleway
+      - living_street
+      - pedestrian
+      - track
+    - medium thick gray
+      - residential
+      - road
+      - unclassified
+      - service (destroys other stuff like living street?)
+
+  - Not rendered tags examples (some are included in igpsport maps...):
+    - path
+    - footway
+    - motorway
+    - motorway_link
+    - bridleway
+    - construction
+
 ## Usage
 
 Run the tool with the following syntax:

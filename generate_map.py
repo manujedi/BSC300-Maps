@@ -4,6 +4,7 @@ import ctypes
 import math
 import os
 import argparse
+import shutil
 import subprocess
 import pprint
 import numpy as np
@@ -28,7 +29,7 @@ tag_file = "tag-igpsport.xml"
 
 cmd = (
     './osmosis --rbf file={input_map_file} workers=4 -b '
-    '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 tag-conf-file={tag_file}'
+    '--mapfile-writer file={output_map_file} type=hd zoom-interval-conf=13,13,13,14,14,14 threads=4 simplification-factor=0 simplification-max-zoom=20 tag-conf-file={tag_file} '
 )
 
 if not os.path.isdir(bin_dir):
@@ -213,7 +214,6 @@ def parseMapsForgeHeader(file: Path) -> MapsForgeHeader:
         tag = data[idx : idx + strlen]
         idx += strlen
         header.wayTags.append(tag)
-    header.wayTags.sort()
 
     amount_zoom_intervals = int.from_bytes(data[idx : idx + 1])
     idx += 1
@@ -283,3 +283,6 @@ postfix = (
 out_map_file = os.path.realpath(prefix + date + postfix + ".map")
 
 os.rename(tmp_map_file, out_map_file)
+shutil.rmtree(temp_dir)
+
+print("map name is", out_map_file)

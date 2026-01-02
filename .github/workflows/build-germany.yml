@@ -68,7 +68,30 @@ jobs:
 
       - name: filter
         run: |
-          ./osmosis/osmfilter tmp.o5m --keep="highway=* waterway=* landuse=* natural=* place=*" --out-o5m > tmp_filtered.o5m
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp2.o5m
+
           rm tmp.o5m
 
       - name: Convert for osmosis 
