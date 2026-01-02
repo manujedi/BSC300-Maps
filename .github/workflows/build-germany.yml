@@ -75,6 +75,7 @@ jobs:
           --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
           --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
           --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="waterway= landuse= natural=" \
           \
           --out-o5m > tmp1.o5m
 
