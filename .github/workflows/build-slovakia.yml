@@ -1,7 +1,7 @@
 name: slovakia
 
 env:
-  countrycode: SL
+  countrycode: SK
 
 on:
   workflow_dispatch:
