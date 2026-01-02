@@ -75,7 +75,7 @@ jobs:
           highway=pedestrian to =cycleway \
           highway=unclassified to =cycleway \
           " \
-          --drop-author --drop-version --out-o5m > tmp2.o5m
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
 
           rm tmp.o5m
 
