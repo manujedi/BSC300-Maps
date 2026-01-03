@@ -15,6 +15,7 @@
     <osm-tag key="highway" value="residential" zoom-appear="14"/>
     <osm-tag key="highway" value="road" zoom-appear="14"/>
     <osm-tag key="highway" value="service" zoom-appear="14"/>
+    <osm-tag key="highway" value="track" zoom-appear="14"/>
   </ways>
 
   <ways>
