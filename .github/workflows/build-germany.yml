@@ -76,6 +76,10 @@ jobs:
           --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
           --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
           --keep="waterway= landuse= natural=" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
           \
           --out-o5m > tmp1.o5m
 
