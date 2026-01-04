@@ -48,17 +48,18 @@ The idea is that we have up to date maps and not rely on the igpsport maps from 
 If someone is interested, [this are the maps](https://manujedi.github.io/BSC300-Maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
 
 ## Improvments:
-New Map           |  Original iGPSPORT Map | OSM
+  Original iGPSPORT Map|New Map           | OSM
 | -------------------- | -------------------- | -------------------- |
-![](docs/mymap.jpg)  |  ![](docs/igpsport_map.jpg)   |  ![](docs/osm.png)
-contains a cycleway | cycleway is included in the maps but not rendered as it is too crowded | osm
-unaccessable streets removed | random stuff included | |
+![](docs/igpsport_map.jpg)   | ![](docs/mymap.jpg)  | ![](docs/osm.png)
+cycleway is included in the maps but not rendered as it is too crowded | contains cycleway | |
+random stuff included |unaccessable streets removed |  |
+from 2023 | up to date |  |
 
-
+### in cruiser:
 Original iGPSPORT Map | New Map 
 | -------------------- | -------------------- | 
 ![](docs/cruiser_igpsport_map.png)  |  ![](docs/cruiser_my_map.png) |
-includes a lot of random stuff making the file bigger | also not perfect, mssing one road (highway=service and no bicycle=* tag, should be fixed in osm)
+includes a lot of random stuff making the file bigger (e.g. footway/sidewalks) | also not perfect, mssing one road (highway=service and no bicycle=* tag, should be fixed in osm)
 highly simlified | way better resolution
 cycleway is useless as it is not rendered on the device (too crowded) | everything rendered
 
