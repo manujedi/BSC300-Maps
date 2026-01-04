@@ -39,13 +39,28 @@ direct links:
 
 # IGPSPORT BSC300 / BSC300T Map Creator
 
-This is a clone from https://github.com/adrianf0/bsc300_maps (all credits goes to him) with an added CI step so github builds maps and ported to python for simpler math. If you are logged in to github you should be able to download the artifacts.
+This is a clone from https://github.com/adrianf0/bsc300_maps with an added CI step so github builds maps and ported to python for simpler math (no original code remains). If you are logged in to github you should be able to download the artifacts.
 Ping me if a map update is wanted or a country shoud be added (or fork the repo and trigger a CI run).
 
-It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments).
+It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments) but the maps are heavily filtered and modified.
 
-The idea is that we have up to date maps and not rely on the igpsport maps from 2023 and regions that are not officially available.
+The idea is that we have up to date maps and not rely on the igpsport maps from 2023 and regions that are not officially available. Also, the maps are shit.
 If someone is interested, [this are the maps](https://manujedi.github.io/bsc300_maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
+
+## Improvments:
+New Map           |  Original iGPSPORT Map | OSM
+| -------------------- | -------------------- | -------------------- |
+![](docs/mymap.jpg)  |  ![](docs/igpsport_map.jpg)   |  ![](docs/osm.png)
+contains a cycleway | cycleway is included in the maps but not rendered as it is too crowded | osm
+unaccessable streets removed | random stuff included | |
+
+
+Original iGPSPORT Map | New Map 
+| -------------------- | -------------------- | 
+![](docs/cruiser_igpsport_map.png)  |  ![](docs/cruiser_my_map.png) |
+includes a lot of random stuff making the file bigger | also not perfect, mssing one road (highway=service and no bicycle=* tag, should be fixed in osm)
+highly simlified | way better resolution
+cycleway is useless as it is not rendered on the device (too crowded) | everything rendered
 
 ## Map format
 - Format is mapsforge
