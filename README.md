@@ -40,7 +40,7 @@ direct links:
 # IGPSPORT BSC300 / BSC300T Map Creator
 
 This is a clone from https://github.com/adrianf0/bsc300_maps with an added CI step so github builds maps and ported to python for simpler math (no original code remains). If you are logged in to github you should be able to download the artifacts.
-Ping me if a map update is wanted or a country shoud be added (or fork the repo and trigger a CI run).
+Ping me if a map update is wanted or a country should be added (or fork the repo and trigger a CI run).
 
 It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments) but the maps are heavily filtered and modified.
 
@@ -52,15 +52,15 @@ If someone is interested, [this are the maps](https://manujedi.github.io/BSC300-
 | -------------------- | -------------------- | -------------------- |
 ![](docs/igpsport_map.jpg)   | ![](docs/mymap.jpg)  | ![](docs/osm.png)
 cycleway is included in the maps but not rendered as it is too crowded | contains cycleway | |
-random stuff included |unaccessable streets removed |  |
+random stuff included |inaccessible streets removed |  |
 from 2023 | up to date |  |
 
 ### in cruiser:
 Original iGPSPORT Map | New Map 
 | -------------------- | -------------------- | 
 ![](docs/cruiser_igpsport_map.png)  |  ![](docs/cruiser_my_map.png) |
-includes a lot of random stuff making the file bigger (e.g. footway/sidewalks) | also not perfect, mssing one road (highway=service and no bicycle=* tag, should be fixed in osm)
-highly simlified | way better resolution
+includes a lot of random stuff making the file bigger (e.g. footway/sidewalks) | also not perfect, missing one road (highway=service and no bicycle=* tag, should be fixed in osm)
+highly simplified | way better resolution
 cycleway is useless as it is not rendered on the device (too crowded) | everything rendered
 
 ## Map format
@@ -71,7 +71,7 @@ cycleway is useless as it is not rendered on the device (too crowded) | everythi
     - thats the reason why I [filter extensively](template_state_country.yml) which ways to add.
   - Code on this repo does not use simplification-factor for zoom levels 13 and 14. Original uses some factor > 0.5 making the maps even smaller but less accurate 
 
-  - Supported tags (colors from nightmode):
+  - Supported tags (colors from night mode):
     - thick yellow line
       - primary
       - primary_link
@@ -274,7 +274,7 @@ This is sorted by westernmost point, which also matches:
 |Burgenland             |AT| 0100| 230310| 3FV -> 4459| 26Y -> 2842| 00R -> 27| 019 -> 45|  
 |Vienna                 |AT| 0900| 230310| 3G0 -> 4464| 26S -> 2836| 009 -> 09| 007 -> 07|  
 
-To get the exact values, latitutde needs to be converted to [web mercartor projection](https://en.wikipedia.org/wiki/Web_Mercator_projection). See parser.ipynb for the exact calculation steps
+To get the exact values, latitude needs to be converted to [web mercator projection](https://en.wikipedia.org/wiki/Web_Mercator_projection). See parser.ipynb for the exact calculation steps
 
 # some graphs about the data:
 
