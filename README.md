@@ -1,41 +1,41 @@
 # Last Map Update: Sat Jan  3 10:14:10 UTC 2026
 
-# [Map Downloads here](https://github.com/manujedi/bsc300_maps/actions) _(you need to be logged in to github)_
+# [Map Downloads here](https://github.com/manujedi/BSC300-Maps/actions) _(you need to be logged in to github)_
 
 direct links:
 
-[![albania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-albania.yml)
-[![austria](https://github.com/manujedi/bsc300_maps/actions/workflows/build-austria.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-austria.yml)
-[![belgium](https://github.com/manujedi/bsc300_maps/actions/workflows/build-belgium.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-belgium.yml)
-[![bosnia-herzegovina](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bosnia-herzegovina.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bosnia-herzegovina.yml)
-[![bulgaria](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bulgaria.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-bulgaria.yml)
-[![croatia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-croatia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-croatia.yml)
-[![czech-republic](https://github.com/manujedi/bsc300_maps/actions/workflows/build-czech-republic.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-czech-republic.yml)
-[![denmark](https://github.com/manujedi/bsc300_maps/actions/workflows/build-denmark.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-denmark.yml)
-[![estonia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-estonia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-estonia.yml)
-[![finland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-finland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-finland.yml)
-[![france](https://github.com/manujedi/bsc300_maps/actions/workflows/build-france.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-france.yml)
-[![germany](https://github.com/manujedi/bsc300_maps/actions/workflows/build-germany.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-germany.yml)
-[![greece](https://github.com/manujedi/bsc300_maps/actions/workflows/build-greece.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-greece.yml)
-[![hungary](https://github.com/manujedi/bsc300_maps/actions/workflows/build-hungary.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-hungary.yml)
-[![ireland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-ireland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-ireland.yml)
-[![italy](https://github.com/manujedi/bsc300_maps/actions/workflows/build-italy.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-italy.yml)
-[![latvia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-latvia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-latvia.yml)
-[![liechtenstein](https://github.com/manujedi/bsc300_maps/actions/workflows/build-liechtenstein.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-liechtenstein.yml)
-[![lithuania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-lithuania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-lithuania.yml)
-[![luxembourg](https://github.com/manujedi/bsc300_maps/actions/workflows/build-luxembourg.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-luxembourg.yml)
-[![netherlands](https://github.com/manujedi/bsc300_maps/actions/workflows/build-netherlands.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-netherlands.yml)
-[![norway](https://github.com/manujedi/bsc300_maps/actions/workflows/build-norway.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-norway.yml)
-[![poland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-poland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-poland.yml)
-[![portugal](https://github.com/manujedi/bsc300_maps/actions/workflows/build-portugal.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-portugal.yml)
-[![romania](https://github.com/manujedi/bsc300_maps/actions/workflows/build-romania.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-romania.yml)
-[![serbia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-serbia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-serbia.yml)
-[![slovakia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovakia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovakia.yml)
-[![slovenia](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovenia.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-slovenia.yml)
-[![spain](https://github.com/manujedi/bsc300_maps/actions/workflows/build-spain.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-spain.yml)
-[![sweden](https://github.com/manujedi/bsc300_maps/actions/workflows/build-sweden.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-sweden.yml)
-[![switzerland](https://github.com/manujedi/bsc300_maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-switzerland.yml)
-[![united-kingdom](https://github.com/manujedi/bsc300_maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/bsc300_maps/actions/workflows/build-united-kingdom.yml)
+[![albania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml)
+[![austria](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml)
+[![belgium](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-belgium.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-belgium.yml)
+[![bosnia-herzegovina](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-bosnia-herzegovina.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-bosnia-herzegovina.yml)
+[![bulgaria](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-bulgaria.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-bulgaria.yml)
+[![croatia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-croatia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-croatia.yml)
+[![czech-republic](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-czech-republic.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-czech-republic.yml)
+[![denmark](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-denmark.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-denmark.yml)
+[![estonia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-estonia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-estonia.yml)
+[![finland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-finland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-finland.yml)
+[![france](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-france.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-france.yml)
+[![germany](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-germany.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-germany.yml)
+[![greece](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greece.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greece.yml)
+[![hungary](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-hungary.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-hungary.yml)
+[![ireland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland.yml)
+[![italy](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-italy.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-italy.yml)
+[![latvia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-latvia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-latvia.yml)
+[![liechtenstein](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-liechtenstein.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-liechtenstein.yml)
+[![lithuania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-lithuania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-lithuania.yml)
+[![luxembourg](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-luxembourg.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-luxembourg.yml)
+[![netherlands](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-netherlands.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-netherlands.yml)
+[![norway](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-norway.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-norway.yml)
+[![poland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-poland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-poland.yml)
+[![portugal](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-portugal.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-portugal.yml)
+[![romania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-romania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-romania.yml)
+[![serbia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-serbia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-serbia.yml)
+[![slovakia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-slovakia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-slovakia.yml)
+[![slovenia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-slovenia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-slovenia.yml)
+[![spain](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-spain.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-spain.yml)
+[![sweden](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-sweden.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-sweden.yml)
+[![switzerland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml)
+[![united-kingdom](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml)
 
 # IGPSPORT BSC300 / BSC300T Map Creator
 
@@ -45,7 +45,7 @@ Ping me if a map update is wanted or a country shoud be added (or fork the repo 
 It is based on the description by CYMES [source](https://www.pepper.pl/dyskusji/igpsport-bsc300-informacje-o-mapach-1046955?page=2#comments) but the maps are heavily filtered and modified.
 
 The idea is that we have up to date maps and not rely on the igpsport maps from 2023 and regions that are not officially available. Also, the maps are shit.
-If someone is interested, [this are the maps](https://manujedi.github.io/bsc300_maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
+If someone is interested, [this are the maps](https://manujedi.github.io/BSC300-Maps/BoundingBoxes_FactoryMaps.html) that came preinstalled on my device. Only open the link on a performant browser (not on mobile).
 
 ## Improvments:
 New Map           |  Original iGPSPORT Map | OSM
@@ -277,10 +277,10 @@ To get the exact values, latitutde needs to be converted to [web mercartor proje
 
 # some graphs about the data:
 
-https://manujedi.github.io/bsc300_maps/f1-maxLon.html
+https://manujedi.github.io/BSC300-Maps/f1-maxLon.html
 
-https://manujedi.github.io/bsc300_maps/f2-maxLat.html
+https://manujedi.github.io/BSC300-Maps/f2-maxLat.html
 
-https://manujedi.github.io/bsc300_maps/f3-angleDiffLongitude.html
+https://manujedi.github.io/BSC300-Maps/f3-angleDiffLongitude.html
 
-https://manujedi.github.io/bsc300_maps/f4-angleDiffLatgitude.html
+https://manujedi.github.io/BSC300-Maps/f4-angleDiffLatgitude.html
