@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tag-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-zoom-appear="16"
+             profile-name="default-profile" xmlns="http://mapsforge.org/tag-mapping"
+             xsi:schemaLocation="http://mapsforge.org/tag-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/master/resources/tag-mapping.xsd">
+  <ways>
+    <!-- in igpsport tags -->
+    
+    <osm-tag key="highway" value="primary" zoom-appear="13"/>
+    <osm-tag key="highway" value="secondary" zoom-appear="13"/>
+    <osm-tag key="highway" value="trunk" zoom-appear="13"/>
+    <osm-tag key="highway" value="tertiary" zoom-appear="13"/>
+
+    <osm-tag key="highway" value="cycleway" zoom-appear="14"/>
+    <osm-tag key="highway" value="living_street" zoom-appear="14"/>
+    <osm-tag key="highway" value="residential" zoom-appear="14"/>
+    <osm-tag key="highway" value="road" zoom-appear="14"/>
+    <osm-tag key="highway" value="service" zoom-appear="14"/>
+    <osm-tag key="highway" value="track" zoom-appear="14"/>
+  </ways>
+
+</tag-mapping>
