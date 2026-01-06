@@ -43,7 +43,11 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-i", required=True, type=str, help="input map file")
 parser.add_argument("-c", required=True, type=str, help="country (e.g. 'DE')")
 parser.add_argument("-s", required=True, type=str, help="state (e.g. 0000)")
+parser.add_argument("-t", required=False, type=str, help="tag file")
 args = parser.parse_args()
+
+if args.t is not None:
+    tag_file = args.t
 
 # paths
 try:
