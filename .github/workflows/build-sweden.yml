@@ -11,8 +11,197 @@ on:
       - completed
 
 jobs:
-  build:
+
+  build-streets-only:
     runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            {name: sweden, url: https://download.geofabrik.de/europe/sweden-latest.osm.pbf, state: "0000"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --drop-tags="name= ref=" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names
+          path: ./*.map
+
+  build-streets-with-names:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            {name: sweden, url: https://download.geofabrik.de/europe/sweden-latest.osm.pbf, state: "0000"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names
+          path: ./*.map
+
+  build-with-water:
+    runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
@@ -88,7 +277,7 @@ jobs:
           " \
           --drop-author --drop-version --out-o5m > tmp_filtered.o5m
 
-          rm tmp.o5m
+          rm tmp.o5m tmp1.o5m
 
       - name: Convert for osmosis 
         run: |
@@ -97,11 +286,120 @@ jobs:
 
       - name: Build mapsforge map
         run: |
-          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }}
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_water.xml
 
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.workflow }}-${{ matrix.maps.name }}
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-water
+          path: ./*.map
+
+  build-with-green-stuff:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            {name: sweden, url: https://download.geofabrik.de/europe/sweden-latest.osm.pbf, state: "0000"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="waterway= landuse= natural= leisure=" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          leisure=garden to landuse=grass \
+          leisure=playground to landuse=grass \
+          leisure=park to landuse=grass \
+          landuse=orchard to =grass \
+          landuse=allotments to =grass \
+          landuse=farmland to =grass \
+          landuse=flowerbed to =grass \
+          landuse=meadow to =grass \
+          landuse=plant_nursery to =grass \
+          landuse=vineyard to =grass \
+          landuse=greenfield to =grass \
+          landuse=village_green to =grass \
+          landuse=greenery to =grass \
+          landuse=cemetery to =grass \
+          natural=scrub to landuse=grass \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_green_stuff.xml
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff
           path: ./*.map
 

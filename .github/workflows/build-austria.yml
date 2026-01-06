@@ -14,6 +14,7 @@ jobs:
 
   build-streets-only:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
@@ -107,6 +108,7 @@ jobs:
 
   build-streets-with-names:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
@@ -199,6 +201,7 @@ jobs:
 
   build-with-water:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
@@ -291,10 +294,9 @@ jobs:
           name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-water
           path: ./*.map
 
-
-
   build-with-green-stuff:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
