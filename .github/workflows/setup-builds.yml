@@ -40,6 +40,18 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           files: README.md
+          body: |
+            ## Map build
+
+            These maps are generated from OpenStreetMap data extracts provided by Geofabrik:
+            https://download.geofabrik.de/
+
+            Data © OpenStreetMap contributors  
+            Licensed under the Open Database License (ODbL):
+            https://opendatacommons.org/licenses/odbl/1-0/
+
+            Please credit OpenStreetMap when using these maps:
+            © OpenStreetMap contributors (https://www.openstreetmap.org/copyright)
 
   build-osmosis-cache:
     runs-on: ubuntu-latest

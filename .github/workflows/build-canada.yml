@@ -1,7 +1,7 @@
-name: romania
+name: canada
 
 env:
-  countrycode: RO
+  countrycode: CA
 
 on:
   workflow_dispatch:
@@ -19,7 +19,19 @@ jobs:
       matrix:
         maps:
           [
-            {name: romania, url: https://download.geofabrik.de/europe/romania-latest.osm.pbf, state: "0000"},
+            {name: alberta, url: https://download.geofabrik.de/north-america/canada/alberta-latest.osm.pbf, state: "0100"},
+            {name: british-columbia, url: https://download.geofabrik.de/north-america/canada/british-columbia-latest.osm.pbf, state: "0200"},
+            {name: manitoba, url: https://download.geofabrik.de/north-america/canada/manitoba-latest.osm.pbf, state: "0300"},
+            {name: new-brunswick, url: https://download.geofabrik.de/north-america/canada/new-brunswick-latest.osm.pbf, state: "0400"},
+            {name: newfoundland-and-labrador, url: https://download.geofabrik.de/north-america/canada/newfoundland-and-labrador-latest.osm.pbf, state: "0500"},
+            {name: northwest-territories, url: https://download.geofabrik.de/north-america/canada/northwest-territories-latest.osm.pbf, state: "0600"},
+            {name: nova-scotia, url: https://download.geofabrik.de/north-america/canada/nova-scotia-latest.osm.pbf, state: "0700"},
+            {name: nunavut, url: https://download.geofabrik.de/north-america/canada/nunavut-latest.osm.pbf, state: "0800"},
+            {name: ontario, url: https://download.geofabrik.de/north-america/canada/ontario-latest.osm.pbf, state: "0900"},
+            {name: prince-edward-island, url: https://download.geofabrik.de/north-america/canada/prince-edward-island-latest.osm.pbf, state: "1000"},
+            {name: quebec, url: https://download.geofabrik.de/north-america/canada/quebec-latest.osm.pbf, state: "1100"},
+            {name: saskatchewan, url: https://download.geofabrik.de/north-america/canada/saskatchewan-latest.osm.pbf, state: "1200"},
+            {name: yukon, url: https://download.geofabrik.de/north-america/canada/yukon-latest.osm.pbf, state: "1300"},
           ]
 
         variant:

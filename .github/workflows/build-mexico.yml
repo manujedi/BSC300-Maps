@@ -1,7 +1,7 @@
-name: romania
+name: mexico
 
 env:
-  countrycode: RO
+  countrycode: MX
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       matrix:
         maps:
           [
-            {name: romania, url: https://download.geofabrik.de/europe/romania-latest.osm.pbf, state: "0000"},
+            {name: mexico, url: https://download.geofabrik.de/north-america/mexico-latest.osm.pbf, state: "0000"},
           ]
 
         variant:
