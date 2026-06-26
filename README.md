@@ -17,12 +17,13 @@
 [![germany](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-germany.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-germany.yml)
 [![greece](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greece.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greece.yml)
 [![hungary](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-hungary.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-hungary.yml)
-[![ireland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland.yml)
+[![ireland-and-northern-ireland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland-and-northern-ireland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-ireland-and-northern-ireland.yml)
 [![italy](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-italy.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-italy.yml)
 [![latvia](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-latvia.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-latvia.yml)
 [![liechtenstein](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-liechtenstein.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-liechtenstein.yml)
 [![lithuania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-lithuania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-lithuania.yml)
 [![luxembourg](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-luxembourg.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-luxembourg.yml)
+[![monaco](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-monaco.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-monaco.yml)
 [![netherlands](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-netherlands.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-netherlands.yml)
 [![norway](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-norway.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-norway.yml)
 [![poland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-poland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-poland.yml)
@@ -35,6 +36,10 @@
 [![sweden](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-sweden.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-sweden.yml)
 [![switzerland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml)
 [![united-kingdom](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml)
+[![us](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-us.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-us.yml)
+[![canada](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-canada.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-canada.yml)
+[![mexico](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-mexico.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-mexico.yml)
+
 
 Data is from openstreemap and hosted on geofabrik. Maps are under the [OpenStreetMap License](https://www.openstreetmap.org/copyright):
 
