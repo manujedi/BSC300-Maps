@@ -1,7 +1,7 @@
 # Last Map Update: Mon Jun 22 07:23:53 UTC 2026
 
-# [Map Downloads here](https://github.com/manujedi/BSC300-Maps/releases/)
-
+# [Map Downloads here](https://github.com/manujedi/BSC300-Maps/releases/) 
+If [actions](https://github.com/manujedi/BSC300-Maps/actions) are running (yellow dot), maps are currently building and will be available in the next hours
 
 [![albania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml)
 [![austria](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml)
