@@ -1,4 +1,4 @@
-name: ireland
+name: ireland-and-northern-ireland
 
 env:
   countrycode: IE
@@ -19,6 +19,7 @@ jobs:
       matrix:
         maps:
           [
+            {name: ireland-and-northern-ireland, url: https://download.geofabrik.de/europe/ireland-and-northern-ireland-latest.osm.pbf, state: "0000"},
           ]
 
         variant:
