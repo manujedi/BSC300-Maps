@@ -1,0 +1,665 @@
+name: usa
+
+env:
+  countrycode: US
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [start map builds]
+    types:
+      - completed
+
+jobs:
+
+  build-streets-only:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: alabama , geofabrik-url:  https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf , state: "0100"},
+            { name: alaska , geofabrik-url:  https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf , state: "0200"},
+            { name: arizona , geofabrik-url:  https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf , state: "0300"},
+            { name: arkansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf , state: "0400"},
+            { name: california , geofabrik-url:  https://download.geofabrik.de/north-america/us/california-latest.osm.pbf , state: "0500"},
+            { name: colorado , geofabrik-url:  https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf , state: "0600"},
+            { name: connecticut , geofabrik-url:  https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf , state: "0700"},
+            { name: delaware , geofabrik-url:  https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf , state: "0800"},
+            { name: district-of-columbia , geofabrik-url:  https://download.geofabrik.de/north-america/us/district-of-columbia-latest.osm.pbf , state: "0900"},
+            { name: florida , geofabrik-url:  https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf , state: "1000"},
+            { name: georgia , geofabrik-url:  https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf , state: "1100"},
+            { name: hawaii , geofabrik-url:  https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf , state: "1200"},
+            { name: idaho , geofabrik-url:  https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf , state: "1300"},
+            { name: illinois , geofabrik-url:  https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf , state: "1400"},
+            { name: indiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf , state: "1500"},
+            { name: iowa , geofabrik-url:  https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf , state: "1600"},
+            { name: kansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf , state: "1700"},
+            { name: kentucky , geofabrik-url:  https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf , state: "1800"},
+            { name: louisiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf , state: "1900"},
+            { name: maine , geofabrik-url:  https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf , state: "2000"},
+            { name: maryland , geofabrik-url:  https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf , state: "2100"},
+            { name: massachusetts , geofabrik-url:  https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf , state: "2200"},
+            { name: michigan , geofabrik-url:  https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf , state: "2300"},
+            { name: minnesota , geofabrik-url:  https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf , state: "2400"},
+            { name: mississippi , geofabrik-url:  https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf , state: "2500"},
+            { name: missouri , geofabrik-url:  https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf , state: "2600"},
+            { name: montana , geofabrik-url:  https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf , state: "2700"},
+            { name: nebraska , geofabrik-url:  https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf , state: "2800"},
+            { name: nevada , geofabrik-url:  https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf , state: "2900"},
+            { name: new-hampshire , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf , state: "3000"},
+            { name: new-jersey , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf , state: "3100"},
+            { name: new-mexico , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf , state: "3200"},
+            { name: new-york , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf , state: "3300"},
+            { name: north-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf , state: "3400"},
+            { name: north-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf , state: "3500"},
+            { name: ohio , geofabrik-url:  https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf , state: "3600"},
+            { name: oklahoma , geofabrik-url:  https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf , state: "3700"},
+            { name: oregon , geofabrik-url:  https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf , state: "3800"},
+            { name: pennsylvania , geofabrik-url:  https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf , state: "3900"},
+            { name: puerto-rico , geofabrik-url:  https://download.geofabrik.de/north-america/us/puerto-rico-latest.osm.pbf , state: "4000"},
+            { name: rhode-island , geofabrik-url:  https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf , state: "4100"},
+            { name: south-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf , state: "4200"},
+            { name: south-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf , state: "4300"},
+            { name: tennessee , geofabrik-url:  https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf , state: "4400"},
+            { name: texas , geofabrik-url:  https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf , state: "4500"},
+            { name: us-virgin-islands , geofabrik-url:  https://download.geofabrik.de/north-america/us/us-virgin-islands-latest.osm.pbf , state: "4600"},
+            { name: utah , geofabrik-url:  https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf , state: "4700"},
+            { name: vermont , geofabrik-url:  https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf , state: "4800"},
+            { name: virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf , state: "4900"},
+            { name: washington , geofabrik-url:  https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf , state: "5000"},
+            { name: west-virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf , state: "5100"},
+            { name: wisconsin , geofabrik-url:  https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf , state: "5200"},
+            { name: wyoming , geofabrik-url:  https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf , state: "5300"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --drop-tags="name= ref=" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
+
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names.zip *.map
+
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.zip
+
+  build-streets-with-names:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: alabama , geofabrik-url:  https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf , state: "0100"},
+            { name: alaska , geofabrik-url:  https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf , state: "0200"},
+            { name: arizona , geofabrik-url:  https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf , state: "0300"},
+            { name: arkansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf , state: "0400"},
+            { name: california , geofabrik-url:  https://download.geofabrik.de/north-america/us/california-latest.osm.pbf , state: "0500"},
+            { name: colorado , geofabrik-url:  https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf , state: "0600"},
+            { name: connecticut , geofabrik-url:  https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf , state: "0700"},
+            { name: delaware , geofabrik-url:  https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf , state: "0800"},
+            { name: district-of-columbia , geofabrik-url:  https://download.geofabrik.de/north-america/us/district-of-columbia-latest.osm.pbf , state: "0900"},
+            { name: florida , geofabrik-url:  https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf , state: "1000"},
+            { name: georgia , geofabrik-url:  https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf , state: "1100"},
+            { name: hawaii , geofabrik-url:  https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf , state: "1200"},
+            { name: idaho , geofabrik-url:  https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf , state: "1300"},
+            { name: illinois , geofabrik-url:  https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf , state: "1400"},
+            { name: indiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf , state: "1500"},
+            { name: iowa , geofabrik-url:  https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf , state: "1600"},
+            { name: kansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf , state: "1700"},
+            { name: kentucky , geofabrik-url:  https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf , state: "1800"},
+            { name: louisiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf , state: "1900"},
+            { name: maine , geofabrik-url:  https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf , state: "2000"},
+            { name: maryland , geofabrik-url:  https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf , state: "2100"},
+            { name: massachusetts , geofabrik-url:  https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf , state: "2200"},
+            { name: michigan , geofabrik-url:  https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf , state: "2300"},
+            { name: minnesota , geofabrik-url:  https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf , state: "2400"},
+            { name: mississippi , geofabrik-url:  https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf , state: "2500"},
+            { name: missouri , geofabrik-url:  https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf , state: "2600"},
+            { name: montana , geofabrik-url:  https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf , state: "2700"},
+            { name: nebraska , geofabrik-url:  https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf , state: "2800"},
+            { name: nevada , geofabrik-url:  https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf , state: "2900"},
+            { name: new-hampshire , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf , state: "3000"},
+            { name: new-jersey , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf , state: "3100"},
+            { name: new-mexico , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf , state: "3200"},
+            { name: new-york , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf , state: "3300"},
+            { name: north-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf , state: "3400"},
+            { name: north-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf , state: "3500"},
+            { name: ohio , geofabrik-url:  https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf , state: "3600"},
+            { name: oklahoma , geofabrik-url:  https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf , state: "3700"},
+            { name: oregon , geofabrik-url:  https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf , state: "3800"},
+            { name: pennsylvania , geofabrik-url:  https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf , state: "3900"},
+            { name: puerto-rico , geofabrik-url:  https://download.geofabrik.de/north-america/us/puerto-rico-latest.osm.pbf , state: "4000"},
+            { name: rhode-island , geofabrik-url:  https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf , state: "4100"},
+            { name: south-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf , state: "4200"},
+            { name: south-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf , state: "4300"},
+            { name: tennessee , geofabrik-url:  https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf , state: "4400"},
+            { name: texas , geofabrik-url:  https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf , state: "4500"},
+            { name: us-virgin-islands , geofabrik-url:  https://download.geofabrik.de/north-america/us/us-virgin-islands-latest.osm.pbf , state: "4600"},
+            { name: utah , geofabrik-url:  https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf , state: "4700"},
+            { name: vermont , geofabrik-url:  https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf , state: "4800"},
+            { name: virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf , state: "4900"},
+            { name: washington , geofabrik-url:  https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf , state: "5000"},
+            { name: west-virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf , state: "5100"},
+            { name: wisconsin , geofabrik-url:  https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf , state: "5200"},
+            { name: wyoming , geofabrik-url:  https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf , state: "5300"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
+
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names.zip *.map
+
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.zip
+
+  build-with-water:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: alabama , geofabrik-url:  https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf , state: "0100"},
+            { name: alaska , geofabrik-url:  https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf , state: "0200"},
+            { name: arizona , geofabrik-url:  https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf , state: "0300"},
+            { name: arkansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf , state: "0400"},
+            { name: california , geofabrik-url:  https://download.geofabrik.de/north-america/us/california-latest.osm.pbf , state: "0500"},
+            { name: colorado , geofabrik-url:  https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf , state: "0600"},
+            { name: connecticut , geofabrik-url:  https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf , state: "0700"},
+            { name: delaware , geofabrik-url:  https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf , state: "0800"},
+            { name: district-of-columbia , geofabrik-url:  https://download.geofabrik.de/north-america/us/district-of-columbia-latest.osm.pbf , state: "0900"},
+            { name: florida , geofabrik-url:  https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf , state: "1000"},
+            { name: georgia , geofabrik-url:  https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf , state: "1100"},
+            { name: hawaii , geofabrik-url:  https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf , state: "1200"},
+            { name: idaho , geofabrik-url:  https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf , state: "1300"},
+            { name: illinois , geofabrik-url:  https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf , state: "1400"},
+            { name: indiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf , state: "1500"},
+            { name: iowa , geofabrik-url:  https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf , state: "1600"},
+            { name: kansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf , state: "1700"},
+            { name: kentucky , geofabrik-url:  https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf , state: "1800"},
+            { name: louisiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf , state: "1900"},
+            { name: maine , geofabrik-url:  https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf , state: "2000"},
+            { name: maryland , geofabrik-url:  https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf , state: "2100"},
+            { name: massachusetts , geofabrik-url:  https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf , state: "2200"},
+            { name: michigan , geofabrik-url:  https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf , state: "2300"},
+            { name: minnesota , geofabrik-url:  https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf , state: "2400"},
+            { name: mississippi , geofabrik-url:  https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf , state: "2500"},
+            { name: missouri , geofabrik-url:  https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf , state: "2600"},
+            { name: montana , geofabrik-url:  https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf , state: "2700"},
+            { name: nebraska , geofabrik-url:  https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf , state: "2800"},
+            { name: nevada , geofabrik-url:  https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf , state: "2900"},
+            { name: new-hampshire , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf , state: "3000"},
+            { name: new-jersey , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf , state: "3100"},
+            { name: new-mexico , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf , state: "3200"},
+            { name: new-york , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf , state: "3300"},
+            { name: north-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf , state: "3400"},
+            { name: north-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf , state: "3500"},
+            { name: ohio , geofabrik-url:  https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf , state: "3600"},
+            { name: oklahoma , geofabrik-url:  https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf , state: "3700"},
+            { name: oregon , geofabrik-url:  https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf , state: "3800"},
+            { name: pennsylvania , geofabrik-url:  https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf , state: "3900"},
+            { name: puerto-rico , geofabrik-url:  https://download.geofabrik.de/north-america/us/puerto-rico-latest.osm.pbf , state: "4000"},
+            { name: rhode-island , geofabrik-url:  https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf , state: "4100"},
+            { name: south-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf , state: "4200"},
+            { name: south-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf , state: "4300"},
+            { name: tennessee , geofabrik-url:  https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf , state: "4400"},
+            { name: texas , geofabrik-url:  https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf , state: "4500"},
+            { name: us-virgin-islands , geofabrik-url:  https://download.geofabrik.de/north-america/us/us-virgin-islands-latest.osm.pbf , state: "4600"},
+            { name: utah , geofabrik-url:  https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf , state: "4700"},
+            { name: vermont , geofabrik-url:  https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf , state: "4800"},
+            { name: virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf , state: "4900"},
+            { name: washington , geofabrik-url:  https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf , state: "5000"},
+            { name: west-virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf , state: "5100"},
+            { name: wisconsin , geofabrik-url:  https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf , state: "5200"},
+            { name: wyoming , geofabrik-url:  https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf , state: "5300"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="waterway= landuse= natural=" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_water.xml
+
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-water.zip *.map
+
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.zip
+
+  build-with-green-stuff:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        maps:
+          [
+            { name: alabama , geofabrik-url:  https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf , state: "0100"},
+            { name: alaska , geofabrik-url:  https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf , state: "0200"},
+            { name: arizona , geofabrik-url:  https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf , state: "0300"},
+            { name: arkansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf , state: "0400"},
+            { name: california , geofabrik-url:  https://download.geofabrik.de/north-america/us/california-latest.osm.pbf , state: "0500"},
+            { name: colorado , geofabrik-url:  https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf , state: "0600"},
+            { name: connecticut , geofabrik-url:  https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf , state: "0700"},
+            { name: delaware , geofabrik-url:  https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf , state: "0800"},
+            { name: district-of-columbia , geofabrik-url:  https://download.geofabrik.de/north-america/us/district-of-columbia-latest.osm.pbf , state: "0900"},
+            { name: florida , geofabrik-url:  https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf , state: "1000"},
+            { name: georgia , geofabrik-url:  https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf , state: "1100"},
+            { name: hawaii , geofabrik-url:  https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf , state: "1200"},
+            { name: idaho , geofabrik-url:  https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf , state: "1300"},
+            { name: illinois , geofabrik-url:  https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf , state: "1400"},
+            { name: indiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf , state: "1500"},
+            { name: iowa , geofabrik-url:  https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf , state: "1600"},
+            { name: kansas , geofabrik-url:  https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf , state: "1700"},
+            { name: kentucky , geofabrik-url:  https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf , state: "1800"},
+            { name: louisiana , geofabrik-url:  https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf , state: "1900"},
+            { name: maine , geofabrik-url:  https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf , state: "2000"},
+            { name: maryland , geofabrik-url:  https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf , state: "2100"},
+            { name: massachusetts , geofabrik-url:  https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf , state: "2200"},
+            { name: michigan , geofabrik-url:  https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf , state: "2300"},
+            { name: minnesota , geofabrik-url:  https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf , state: "2400"},
+            { name: mississippi , geofabrik-url:  https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf , state: "2500"},
+            { name: missouri , geofabrik-url:  https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf , state: "2600"},
+            { name: montana , geofabrik-url:  https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf , state: "2700"},
+            { name: nebraska , geofabrik-url:  https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf , state: "2800"},
+            { name: nevada , geofabrik-url:  https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf , state: "2900"},
+            { name: new-hampshire , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf , state: "3000"},
+            { name: new-jersey , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf , state: "3100"},
+            { name: new-mexico , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf , state: "3200"},
+            { name: new-york , geofabrik-url:  https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf , state: "3300"},
+            { name: north-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf , state: "3400"},
+            { name: north-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf , state: "3500"},
+            { name: ohio , geofabrik-url:  https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf , state: "3600"},
+            { name: oklahoma , geofabrik-url:  https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf , state: "3700"},
+            { name: oregon , geofabrik-url:  https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf , state: "3800"},
+            { name: pennsylvania , geofabrik-url:  https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf , state: "3900"},
+            { name: puerto-rico , geofabrik-url:  https://download.geofabrik.de/north-america/us/puerto-rico-latest.osm.pbf , state: "4000"},
+            { name: rhode-island , geofabrik-url:  https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf , state: "4100"},
+            { name: south-carolina , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf , state: "4200"},
+            { name: south-dakota , geofabrik-url:  https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf , state: "4300"},
+            { name: tennessee , geofabrik-url:  https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf , state: "4400"},
+            { name: texas , geofabrik-url:  https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf , state: "4500"},
+            { name: us-virgin-islands , geofabrik-url:  https://download.geofabrik.de/north-america/us/us-virgin-islands-latest.osm.pbf , state: "4600"},
+            { name: utah , geofabrik-url:  https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf , state: "4700"},
+            { name: vermont , geofabrik-url:  https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf , state: "4800"},
+            { name: virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf , state: "4900"},
+            { name: washington , geofabrik-url:  https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf , state: "5000"},
+            { name: west-virginia , geofabrik-url:  https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf , state: "5100"},
+            { name: wisconsin , geofabrik-url:  https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf , state: "5200"},
+            { name: wyoming , geofabrik-url:  https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf , state: "5300"},
+          ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Env
+        run: |
+          sudo apt-get update 
+          sudo apt-get install wget openjdk-21-jre python3 pip
+          pip install numpy
+          echo "freeing ~10gb of disk space"
+          sudo rm -rf /usr/local/lib/android || true
+
+      - name: omsis-cache
+        uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: osmosis
+          key: osmosis-cache
+
+      - name: omsis
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: sh setup_env.sh
+
+      - name: Download
+        run: |
+          wget ${{ matrix.maps.url }} -O tmp.pbf
+
+      - name: Convert for filtering
+        run: |
+          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          rm tmp.pbf
+
+      - name: filter
+        run: |
+          osmosis/osmfilter -v tmp.o5m \
+          --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
+          --keep="highway=service and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=footway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=bridleway and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=path and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=pedestrian and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="highway=unclassified and ( bicycle=designated or bicycle=yes or bicycle=permissive )" \
+          --keep="sidewalk:*:bicycle=yes" \
+          --keep="waterway= landuse= natural= leisure=" \
+          --keep="route=bicycle =mtb" \
+          --keep="cycleway:*=lane :*=track *:=shared_lane *:=share_busway *:=separate *:=crossing *:=shoulder *:=link *:=traffic_island" \
+          --keep="bicycle_road=yes" \
+          --keep="cyclestreet=yes" \
+          --out-o5m > tmp1.o5m
+
+          osmosis/osmfilter -v tmp1.o5m --modify-tags=" \
+          highway=trunk_link to =primary \
+          highway=trunk to =primary \
+          highway=primary_link to =primary \
+          highway=tertiary_link to =tertiary \
+          highway=secondary_link to =secondary \
+          highway=trunk_link to =trunk \
+          highway=footway to =cycleway \
+          highway=bridleway to =cycleway \
+          highway=sidewalk to =cycleway \
+          highway=path to =cycleway \
+          highway=pedestrian to =cycleway \
+          highway=unclassified to =cycleway \
+          leisure=garden to landuse=grass \
+          leisure=playground to landuse=grass \
+          leisure=park to landuse=grass \
+          landuse=orchard to =grass \
+          landuse=allotments to =grass \
+          landuse=farmland to =grass \
+          landuse=flowerbed to =grass \
+          landuse=meadow to =grass \
+          landuse=plant_nursery to =grass \
+          landuse=vineyard to =grass \
+          landuse=greenfield to =grass \
+          landuse=village_green to =grass \
+          landuse=greenery to =grass \
+          landuse=cemetery to =grass \
+          natural=scrub to landuse=grass \
+          " \
+          --drop-author --drop-version --out-o5m > tmp_filtered.o5m
+
+          rm tmp.o5m tmp1.o5m
+
+      - name: Convert for osmosis 
+        run: |
+          ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
+          rm tmp_filtered.o5m
+
+      - name: Build mapsforge map
+        run: |
+          /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_green_stuff.xml
+
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff.zip *.map
+
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.zip
+

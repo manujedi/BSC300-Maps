@@ -2,7 +2,6 @@
 
 # [Map Downloads here](https://github.com/manujedi/BSC300-Maps/releases/)
 
-direct links:
 
 [![albania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml)
 [![austria](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-austria.yml)
