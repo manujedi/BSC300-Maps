@@ -68,7 +68,7 @@ bin_dir = os.path.realpath(bin_dir)
 temp_dir = str(int(datetime.today().timestamp()*1000)) + "_tmp"
 Path(temp_dir).mkdir(parents=True, exist_ok=True)
 os.environ["JAVA_TOOL_OPTIONS"] = "-Djava.io.tmpdir=" + os.path.realpath(temp_dir)
-os.environ["_JAVA_OPTIONS"] = "-Xmx8g"
+os.environ["_JAVA_OPTIONS"] = "-Xmx16g"
 
 # run
 cmd = cmd.format(
