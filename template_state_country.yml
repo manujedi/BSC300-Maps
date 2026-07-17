@@ -94,7 +94,7 @@ jobs:
 
       - name: Convert for filtering
         run: |
-          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          ./osmosis/osmconvert tmp.pbf ${{ matrix.maps.clip }} -o=tmp.o5m
           rm tmp.pbf
 
       - name: filter

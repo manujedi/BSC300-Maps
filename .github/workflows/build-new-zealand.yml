@@ -19,7 +19,9 @@ jobs:
       matrix:
         maps:
           [
-            {name: new-zealand, url: https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf, state: "0000"},
+            {name: north-island, url: https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf, state: "0100", clip: "-B=poly/north-island.poly"},
+            {name: south-island, url: https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf, state: "0200", clip: "-b=166.0,-47.4,174.5,-40.45"},
+            {name: chatham-islands, url: https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf, state: "0300", clip: "-b=-177.0,-44.5,-175.7,-43.4"},
           ]
 
         variant:
@@ -97,7 +99,7 @@ jobs:
 
       - name: Convert for filtering
         run: |
-          ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
+          ./osmosis/osmconvert tmp.pbf ${{ matrix.maps.clip }} -o=tmp.o5m
           rm tmp.pbf
 
       - name: filter
