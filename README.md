@@ -56,6 +56,7 @@ If [actions](https://github.com/manujedi/BSC300-Maps/actions) are running (yello
 [![canada](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-canada.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-canada.yml)
 [![mexico](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-mexico.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-mexico.yml)
 [![greenland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greenland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-greenland.yml)
+[![new-zealand](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-new-zealand.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-new-zealand.yml)
 
 
 Data is from openstreemap and hosted on geofabrik. Maps are under the [OpenStreetMap License](https://www.openstreetmap.org/copyright):
