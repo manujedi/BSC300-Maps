@@ -1,6 +1,14 @@
 # Last Map Update: Sat Aug  1 02:24:14 UTC 2026
 
 # [Map Downloads here](https://github.com/manujedi/BSC300-Maps/releases/) 
+
+Or if you prefer a map where you can click on what you want to download:
+
+- [No street names](https://manujedi.github.io/BSC300-Maps/map-download-no-street-names.html)
+- [+ street names](https://manujedi.github.io/BSC300-Maps/map-download-with-street-names.html) <- recommended, the BSC may not render streets if there is too much information on the map
+- [+ water](https://manujedi.github.io/BSC300-Maps/map-download-with-water.html)
+- [+ forest and grassland](https://manujedi.github.io/BSC300-Maps/map-download-with-green-stuff.html)
+
 If [actions](https://github.com/manujedi/BSC300-Maps/actions) are running (yellow dot), maps are currently building and will be available in the next hours
 
 [![albania](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-albania.yml)
