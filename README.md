@@ -1,13 +1,26 @@
 # Last Map Update: Sat Aug  1 02:24:14 UTC 2026
 
-# [Map Downloads here](https://github.com/manujedi/BSC300-Maps/releases/) 
+# World Maps for Download
 
-Or if you prefer a map where you can click on what you want to download:
+### [No Street Names](https://manujedi.github.io/BSC300-Maps/map-download-no-street-names.html)
 
-- [No street names](https://manujedi.github.io/BSC300-Maps/map-download-no-street-names.html)
-- [+ street names](https://manujedi.github.io/BSC300-Maps/map-download-with-street-names.html) <- recommended, the BSC may not render streets if there is too much information on the map
-- [+ water](https://manujedi.github.io/BSC300-Maps/map-download-with-water.html)
-- [+ forest and grassland](https://manujedi.github.io/BSC300-Maps/map-download-with-green-stuff.html)
+A clean map without street names, ideal when you want to minimize visual clutter.
+
+### [With Street Names](https://manujedi.github.io/BSC300-Maps/map-download-with-street-names.html) — **Recommended**
+
+Includes street names for easier navigation and identification.
+
+> **Note:** The BSC may not render streets correctly when there is too much information on the map. For the best results, this version is recommended.
+
+### [With Water](https://manujedi.github.io/BSC300-Maps/map-download-with-water.html)
+
+Includes water features such as lakes, rivers...
+
+### [With Forest & Grassland](https://manujedi.github.io/BSC300-Maps/map-download-with-green-stuff.html)
+
+Includes forest and grassland areas for a more detailed representation of the landscape.
+
+### [And all downloads as a List](https://github.com/manujedi/BSC300-Maps/releases/) 
 
 If [actions](https://github.com/manujedi/BSC300-Maps/actions) are running (yellow dot), maps are currently building and will be available in the next hours
 
