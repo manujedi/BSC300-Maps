@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "51 13 * * *"
+    - cron: "19 20 * * *"
   workflow_run:
     workflows: [start map builds]
     types:
@@ -15,9 +15,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     strategy:
+      fail-fast: false
       matrix:
         maps:
           [
