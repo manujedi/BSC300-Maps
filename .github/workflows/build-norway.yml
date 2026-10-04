@@ -77,7 +77,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check file existence
+        id: map_exists
+        run: |
+          if (wget -q --spider https://github.com/manujedi/BSC300-Maps/releases/latest/download/${{ github.workflow }}-${{ matrix.maps.name }}-${{ matrix.variant.zip }}.zip); then
+            echo "Map exists"
+            echo "create_map=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Map does not exist, create it"
+            echo "create_map=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Env
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           sudo apt-get update 
           sudo apt-get install wget openjdk-21-jre python3 pip
@@ -86,6 +98,7 @@ jobs:
           sudo rm -rf /usr/local/lib/android || true
 
       - name: omsis-cache
+        if: steps.map_exists.outputs.create_map == 'true'
         uses: actions/cache/restore@v4
         id: cache
         with:
@@ -93,19 +106,22 @@ jobs:
           key: osmosis-cache
 
       - name: omsis
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.map_exists.outputs.create_map == 'true' && steps.cache.outputs.cache-hit != 'true'
         run: sh setup_env.sh
 
       - name: Download
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           wget ${{ matrix.maps.url }} -O tmp.pbf
 
       - name: Convert for filtering
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           ./osmosis/osmconvert tmp.pbf -o=tmp.o5m
           rm tmp.pbf
 
       - name: filter
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           osmosis/osmfilter -v tmp.o5m \
           --keep="highway=primary =primary_link =secondary =secondary_link =tertiary =tertiary_link =trunk =trunk_link =cycleway =living_street =residential =road =track =unclassified" \
@@ -144,19 +160,23 @@ jobs:
           rm tmp.o5m tmp1.o5m
 
       - name: Convert for osmosis 
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           ./osmosis/osmconvert tmp_filtered.o5m -o=tmp_filtered.pbf
           rm tmp_filtered.o5m
 
       - name: Build mapsforge map
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t ${{ matrix.variant.tags }}
 
       - name: zip
+        if: steps.map_exists.outputs.create_map == 'true'
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-${{ matrix.variant.zip }}.zip *.map
 
       - name: get tag
+        if: steps.map_exists.outputs.create_map == 'true'
         id: tag
         run: |
           git fetch --force --tags
@@ -164,6 +184,7 @@ jobs:
           echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
 
       - name: Release
+        if: steps.map_exists.outputs.create_map == 'true'
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
