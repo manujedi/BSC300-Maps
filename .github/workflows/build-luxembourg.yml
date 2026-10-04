@@ -6,8 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-  - cron: "0 0 * * *"
-
+    - cron: "23 0 * * *"
   workflow_run:
     workflows: [start map builds]
     types:
