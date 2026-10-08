@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "29 16 * * *"
+    - cron: "27 22 * * *"
   workflow_run:
     workflows: [start map builds]
     types:
@@ -81,7 +81,7 @@ jobs:
             echo "Map exists"
             echo "create_map=false" >> "$GITHUB_OUTPUT"
           else
-            if grep -q -F "${{ matrix.maps.name }}-${{ matrix.variant.zip }}" "skipped_maps.txt"; then
+            if grep -q -F "${{ github.workflow }}-${{ matrix.maps.name }}-${{ matrix.variant.zip }}" "skipped_maps.txt"; then
               echo 'Skipping'
               echo "create_map=false" >> "$GITHUB_OUTPUT"
             else

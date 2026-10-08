@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 13 * * *"
+    - cron: "10 1 * * *"
   workflow_run:
     workflows: [start map builds]
     types:
@@ -86,16 +86,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check file existence
+      - name: Check if map should be created
         id: map_exists
         run: |
           if (wget -q --spider https://github.com/manujedi/BSC300-Maps/releases/latest/download/${{ github.workflow }}-${{ matrix.maps.name }}-${{ matrix.variant.zip }}.zip); then
             echo "Map exists"
             echo "create_map=false" >> "$GITHUB_OUTPUT"
           else
-            echo "Map does not exist, create it"
-            echo "create_map=true" >> "$GITHUB_OUTPUT"
+            if grep -q -F "${{ github.workflow }}-${{ matrix.maps.name }}-${{ matrix.variant.zip }}" "skipped_maps.txt"; then
+              echo 'Skipping'
+              echo "create_map=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "Map does not exist and is not skipped"
+              echo "create_map=true" >> "$GITHUB_OUTPUT"
+            fi
           fi
+
+
 
       - name: Setup Env
         if: steps.map_exists.outputs.create_map == 'true'
