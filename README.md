@@ -14,11 +14,11 @@ Includes street names for easier navigation and identification.
 
 ### [With Water](https://manujedi.github.io/BSC300-Maps/map-download-with-water.html)
 
-Includes water features such as lakes, rivers...
+Includes water features such as lakes, rivers... Some maps are excluded because they take longer than 6h to build. See skipped_maps.txt
 
 ### [With Forest & Grassland](https://manujedi.github.io/BSC300-Maps/map-download-with-green-stuff.html)
 
-Includes forest and grassland areas for a more detailed representation of the landscape.
+Includes forest and grassland areas for a more detailed representation of the landscape. Some maps are excluded because they take longer than 6h to build. See skipped_maps.txt
 
 ### [And all downloads as a List](https://github.com/manujedi/BSC300-Maps/releases/) 
 
