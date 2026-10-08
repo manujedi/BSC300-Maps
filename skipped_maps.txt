@@ -2,7 +2,7 @@ finland-finland-with-water
 finland-finland-with-green-stuff
 us-michigan-with-water
 us-michigan-with-green-stuff
-canada-nunavut
-canada-nunavut
-canada-ontario
-canada-ontario
+canada-nunavut-with-water
+canada-nunavut-with-green-stuff
+canada-ontario-with-water
+canada-ontario-with-green-stuff
